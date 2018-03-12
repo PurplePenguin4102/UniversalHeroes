@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="UniversalHeroes.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UniversalHeroes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView x:Name="MySplitView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                   DisplayMode="CompactInline" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200" Background="Transparent">
+            <SplitView.Pane>
+                <StackPanel Name="Hamburger">
+                    <Button x:Name="ExpandoButton" Width="50" Height="56" Background="Black" Click="ExpandoButton_Click"/>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Canvas.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#7E9ED4" Offset="0"/>
+                                <GradientStop Color="#355C9E" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Canvas.Background>
+                        <Rectangle Fill="#D2FAFA" Canvas.Left="100" Canvas.Top="100" Canvas.ZIndex="0" Width="20" Height="20"/>
+                        <Rectangle Fill="#FAD2FA" Canvas.Left="160" Canvas.Top="160" Canvas.ZIndex="1" Width="20" Height="20"/>
+                        <Rectangle Fill="#E6FAD2" Canvas.Left="220" Canvas.Top="220" Canvas.ZIndex="2" Width="20" Height="20"/>
+                        <Rectangle x:Name="yellowGuy" Fill="#FAFAD2" 
+                                   Canvas.Left="{x:Bind ViewModel.YellowGuy.Left}" 
+                                   Canvas.Top="{x:Bind ViewModel.YellowGuy.Top}" 
+                                   Canvas.ZIndex="3" Width="20" Height="20" KeyDown="yellowGuy_KeyDown" KeyUp="yellowGuy_KeyUp"/>
+                    </Canvas>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+
+    </Grid>
+</Page>
