@@ -48,14 +48,31 @@ namespace UniversalHeroes
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
-        private void yellowGuy_KeyDown(object sender, KeyRoutedEventArgs e)
+        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            ViewModel.YellowGuy.Command = e.Key;
+            switch (e.Key)
+            {
+                case VirtualKey.Right: ViewModel.YellowGuy.Command = GuyCommands.GoRight; break;
+                case VirtualKey.Left: ViewModel.YellowGuy.Command = GuyCommands.GoLeft; break;
+                case VirtualKey.Up: ViewModel.YellowGuy.Command = GuyCommands.GoUp; break;
+                case VirtualKey.Down: ViewModel.YellowGuy.Command = GuyCommands.GoDown; break;
+            }
         }
 
-        private void yellowGuy_KeyUp(object sender, KeyRoutedEventArgs e)
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            ViewModel.YellowGuy.Command = VirtualKey.Cancel;
+            ViewModel.YellowGuy.Command = GuyCommands.Stop;
+        }
+
+        private void yellowGuy_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            ViewModel.YellowGuy.Selected = true;
+        }
+
+        private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            if (e.OriginalSource is Canvas)
+                ViewModel.YellowGuy.Selected = false;
         }
     }
 }

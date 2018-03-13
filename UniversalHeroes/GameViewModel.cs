@@ -8,7 +8,6 @@ namespace UniversalHeroes
 {
     public class GameViewModel
     {
-        private YellowGuy _yellowGuy = new YellowGuy();
-        public YellowGuy YellowGuy { get; set; }
+        public YellowGuy YellowGuy { get; set; } = new YellowGuy();
     }
 }

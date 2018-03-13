@@ -5,7 +5,11 @@
     xmlns:local="using:UniversalHeroes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" 
+    
+    KeyDown="Page_KeyDown" 
+    KeyUp="Page_KeyUp"
+    PointerPressed="Page_PointerPressed">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <SplitView x:Name="MySplitView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                    DisplayMode="CompactInline" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200" Background="Transparent">
@@ -29,7 +33,10 @@
                         <Rectangle x:Name="yellowGuy" Fill="#FAFAD2" 
                                    Canvas.Left="{x:Bind ViewModel.YellowGuy.Left}" 
                                    Canvas.Top="{x:Bind ViewModel.YellowGuy.Top}" 
-                                   Canvas.ZIndex="3" Width="20" Height="20" KeyDown="yellowGuy_KeyDown" KeyUp="yellowGuy_KeyUp"/>
+                                   Width="{x:Bind ViewModel.YellowGuy.Width}"
+                                   Height="{x:Bind ViewModel.YellowGuy.Height}"
+                                   Canvas.ZIndex="3" 
+                                   PointerPressed="yellowGuy_PointerPressed"/>
                     </Canvas>
                 </Grid>
             </SplitView.Content>
