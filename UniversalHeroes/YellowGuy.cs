@@ -1,17 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
+using System.ServiceModel;
+using System.Threading;
+using Windows.UI.Xaml;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 
 namespace UniversalHeroes
 {
-    public class YellowGuy : INotifyPropertyChanged
+    public class YellowGuy : ActorBase, INotifyPropertyChanged
     {
-        public YellowGuy() { }
+        public YellowGuy() {}
+
+        public override void UpdateActor()
+        {
+            UpdateSquarePosition();
+            base.UpdateActor();
+        }
+
+        private void UpdateSquarePosition()
+        {
+            Top += ySpeed;
+            Left += xSpeed;
+        }
 
         private double _top;
         public double Top

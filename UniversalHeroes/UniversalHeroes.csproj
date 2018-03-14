@@ -92,9 +92,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActorBase.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameModel.cs" />
     <Compile Include="GameViewModel.cs" />
     <Compile Include="GuyCommands.cs" />
     <Compile Include="MainPage.xaml.cs">
