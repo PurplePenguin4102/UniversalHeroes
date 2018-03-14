@@ -11,6 +11,7 @@ namespace UniversalHeroes
     {
         public YellowGuy YellowGuy { get; set; } = new YellowGuy();
         public GameModel GameModel { get; set; } = new GameModel();
+
         private List<ActorBase> actors = new List<ActorBase>();
         public GameViewModel()
         {

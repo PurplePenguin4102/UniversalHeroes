@@ -17,6 +17,11 @@ namespace UniversalHeroes
 {
     public class YellowGuy : ActorBase, INotifyPropertyChanged
     {
+        private int xSpeed;
+        private int ySpeed;
+        private int xPos;
+        private int yPos;
+
         public YellowGuy() {}
 
         public override void UpdateActor()
@@ -29,6 +34,20 @@ namespace UniversalHeroes
         {
             Top += ySpeed;
             Left += xSpeed;
+        }
+
+        private double _left;
+        public double Left
+        {
+            get => _left;
+            set
+            {
+                if (_left != value)
+                {
+                    _left = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
         private double _top;
@@ -80,21 +99,6 @@ namespace UniversalHeroes
             set => _selected = value;
         }
 
-
-        private double _left;
-        public double Left
-        {
-            get => _left;
-            set
-            {
-                if (_left != value)
-                {
-                    _left = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
         private GuyCommands _command = GuyCommands.Stop;
         public GuyCommands Command
         {
@@ -106,16 +110,10 @@ namespace UniversalHeroes
                     _command = value;
                     ChangeSpeed();
                     NotifyPropertyChanged();
-                    
                 }
 
             }
         }
-
-        private int xSpeed;
-        private int ySpeed;
-        private int xPos;
-        private int yPos;
 
         private void ChangeSpeed()
         {
