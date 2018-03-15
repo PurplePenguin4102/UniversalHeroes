@@ -25,6 +25,7 @@ using Google.Apis.Upload;
 using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
+using Windows.UI.Core;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -41,6 +42,18 @@ namespace UniversalHeroes
         {
             this.InitializeComponent();
             this.ViewModel = new GameViewModel();
+            Window.Current.CoreWindow.KeyDown += UserKeyDown;
+        }
+
+        private void UserKeyDown(CoreWindow sender, KeyEventArgs args)
+        {
+            switch (args.VirtualKey)
+            {
+                case VirtualKey.Right: ViewModel.YellowGuy.Command = GuyCommands.GoRight; break;
+                case VirtualKey.Left: ViewModel.YellowGuy.Command = GuyCommands.GoLeft; break;
+                case VirtualKey.Up: ViewModel.YellowGuy.Command = GuyCommands.GoUp; break;
+                case VirtualKey.Down: ViewModel.YellowGuy.Command = GuyCommands.GoDown; break;
+            }
         }
 
         private void ExpandoButton_Click(object sender, RoutedEventArgs e)
@@ -50,13 +63,7 @@ namespace UniversalHeroes
 
         private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            switch (e.Key)
-            {
-                case VirtualKey.Right: ViewModel.YellowGuy.Command = GuyCommands.GoRight; break;
-                case VirtualKey.Left: ViewModel.YellowGuy.Command = GuyCommands.GoLeft; break;
-                case VirtualKey.Up: ViewModel.YellowGuy.Command = GuyCommands.GoUp; break;
-                case VirtualKey.Down: ViewModel.YellowGuy.Command = GuyCommands.GoDown; break;
-            }
+
         }
 
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
@@ -73,6 +80,11 @@ namespace UniversalHeroes
         {
             if (e.OriginalSource is Canvas)
                 ViewModel.YellowGuy.Selected = false;
+        }
+
+        private void Page_KeyDown_1(object sender, KeyRoutedEventArgs e)
+        {
+
         }
     }
 }

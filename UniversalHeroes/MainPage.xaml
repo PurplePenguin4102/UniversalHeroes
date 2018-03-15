@@ -6,10 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" 
-    
-    KeyDown="Page_KeyDown" 
-    KeyUp="Page_KeyUp"
-    PointerPressed="Page_PointerPressed">
+    PointerPressed="Page_PointerPressed" KeyDown="Page_KeyDown_1">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <SplitView x:Name="MySplitView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                    DisplayMode="CompactInline" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200" Background="Transparent">
@@ -20,24 +17,30 @@
             </SplitView.Pane>
             <SplitView.Content>
                 <Grid>
-                    <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Canvas.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#7E9ED4" Offset="0"/>
-                                <GradientStop Color="#355C9E" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Canvas.Background>
-                        <Rectangle Fill="#D2FAFA" Canvas.Left="100" Canvas.Top="100" Canvas.ZIndex="0" Width="20" Height="20"/>
-                        <Rectangle Fill="#FAD2FA" Canvas.Left="160" Canvas.Top="160" Canvas.ZIndex="1" Width="20" Height="20"/>
-                        <Rectangle Fill="#E6FAD2" Canvas.Left="220" Canvas.Top="220" Canvas.ZIndex="2" Width="20" Height="20"/>
-                        <Rectangle x:Name="yellowGuy" Fill="#FAFAD2" 
-                                   Canvas.Left="{x:Bind ViewModel.YellowGuy.Left}" 
-                                   Canvas.Top="{x:Bind ViewModel.YellowGuy.Top}" 
-                                   Width="{x:Bind ViewModel.YellowGuy.Width}"
-                                   Height="{x:Bind ViewModel.YellowGuy.Height}"
+                    <Border Name="CanvasBorder" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0">
+                        <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,-1770,-980">
+                            <Canvas.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#7E9ED4" Offset="0"/>
+                                    <GradientStop Color="#355C9E" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Canvas.Background>
+                            <Rectangle Fill="#D2FAFA" Canvas.Left="100" Canvas.Top="100" Canvas.ZIndex="0" Width="20" Height="20"/>
+                            <Rectangle Fill="#FAD2FA" Canvas.Left="160" Canvas.Top="160" Canvas.ZIndex="1" Width="20" Height="20"/>
+                            <Rectangle Fill="#E6FAD2" Canvas.Left="220" Canvas.Top="220" Canvas.ZIndex="2" Width="20" Height="20"/>
+                            <Rectangle x:Name="yellowGuy" Fill="#FAFAD2" 
+                                   Canvas.Left="{x:Bind Path=ViewModel.YellowGuy.Left}" 
+                                   Canvas.Top="{x:Bind Path=ViewModel.YellowGuy.Top}" 
+                                   Width="{x:Bind Path=ViewModel.YellowGuy.Width}"
+                                   Height="{x:Bind Path=ViewModel.YellowGuy.Height}"
                                    Canvas.ZIndex="3" 
                                    PointerPressed="yellowGuy_PointerPressed"/>
-                    </Canvas>
+                        </Canvas>
+                    </Border>
+                    <Button Content="R" Width="50" Height="50" HorizontalAlignment="Left" Canvas.ZIndex="10" Background="#CCFFFFFF" FontSize="36" Margin="1700,950,0,80"/>
+                    <Button Content="D" Width="50" Height="50" HorizontalAlignment="Left" Canvas.ZIndex="10" Background="#CCFFFFFF" FontSize="36" Margin="1625,950,0,80"/>
+                    <Button Content="U" Width="50" Height="50" HorizontalAlignment="Left" Canvas.ZIndex="10" Background="#CCFFFFFF" FontSize="36" Margin="1625,875,0,155"/>
+                    <Button Content="L" Width="50" Height="50" HorizontalAlignment="Left" Canvas.ZIndex="10" Background="#CCFFFFFF" FontSize="36" Margin="1550,950,0,80"/>
                 </Grid>
             </SplitView.Content>
         </SplitView>
