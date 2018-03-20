@@ -28,13 +28,19 @@
                             <Rectangle Fill="#D2FAFA" Canvas.Left="100" Canvas.Top="100" Canvas.ZIndex="0" Width="20" Height="20"/>
                             <Rectangle Fill="#FAD2FA" Canvas.Left="160" Canvas.Top="160" Canvas.ZIndex="1" Width="20" Height="20"/>
                             <Rectangle Fill="#E6FAD2" Canvas.Left="220" Canvas.Top="220" Canvas.ZIndex="2" Width="20" Height="20"/>
-                            <Rectangle x:Name="yellowGuy" Fill="#FAFAD2" 
-                                   Canvas.Left="{x:Bind Path=ViewModel.YellowGuy.Left}" 
-                                   Canvas.Top="{x:Bind Path=ViewModel.YellowGuy.Top}" 
+                            <Rectangle x:Name="yellowGuy" Fill="#FAFAD2"
                                    Width="{x:Bind Path=ViewModel.YellowGuy.Width}"
                                    Height="{x:Bind Path=ViewModel.YellowGuy.Height}"
+                                   Canvas.Left="0"
+                                   Canvas.Top="0"
                                    Canvas.ZIndex="3" 
-                                   PointerPressed="yellowGuy_PointerPressed"/>
+                                   PointerPressed="yellowGuy_PointerPressed">
+                                <Rectangle.RenderTransform>
+                                    <TranslateTransform 
+                                        X="{x:Bind Path=ViewModel.YellowGuy.Left, Mode=TwoWay}" 
+                                        Y="{x:Bind Path=ViewModel.YellowGuy.Top, Mode=TwoWay}"/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
                         </Canvas>
                     </Border>
                     <Button Content="R" Width="50" Height="50" HorizontalAlignment="Left" Canvas.ZIndex="10" Background="#CCFFFFFF" FontSize="36" Margin="1700,950,0,80"/>
