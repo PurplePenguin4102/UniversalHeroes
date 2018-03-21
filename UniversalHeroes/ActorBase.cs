@@ -8,9 +8,6 @@ namespace UniversalHeroes
 {
     public class ActorBase
     {
-        public virtual void UpdateActor()
-        {
-
-        }
+        public virtual void UpdateActor() {}
     }
 }

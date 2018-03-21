@@ -122,8 +122,8 @@ namespace UniversalHeroes
                 case GuyCommands.Stop: xSpeed = ySpeed = 0; break;
                 case GuyCommands.GoLeft: xSpeed = -1; break;
                 case GuyCommands.GoRight: xSpeed = 1; break;
-                case GuyCommands.GoDown: ySpeed = -1; break;
-                case GuyCommands.GoUp: ySpeed = 1; break;
+                case GuyCommands.GoDown: ySpeed = 1; break;
+                case GuyCommands.GoUp: ySpeed = -1; break;
             }
         }
 

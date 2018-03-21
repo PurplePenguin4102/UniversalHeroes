@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
+using Windows.ApplicationModel.Core;
+
 
 namespace UniversalHeroes
 {
     public class GameModel
     {
-        public void UpdateGame(object state)
+        public async void UpdateGame(object state)
         {
-            var gameState = state as List<ActorBase>;
-            foreach (var actor in gameState)
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            () =>
             {
-                actor.UpdateActor();
-            }
+                var gameState = state as List<ActorBase>;
+                foreach (var actor in gameState)
+                {
+                    actor.UpdateActor();
+                }
+            });
         }
     }
 }

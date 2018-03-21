@@ -61,11 +61,6 @@ namespace UniversalHeroes
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
-        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-
-        }
-
         private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             ViewModel.YellowGuy.Command = GuyCommands.Stop;
@@ -80,11 +75,6 @@ namespace UniversalHeroes
         {
             if (e.OriginalSource is Canvas)
                 ViewModel.YellowGuy.Selected = false;
-        }
-
-        private void Page_KeyDown_1(object sender, KeyRoutedEventArgs e)
-        {
-
         }
     }
 }
