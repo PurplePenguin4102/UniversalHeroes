@@ -16,7 +16,7 @@ namespace UniversalHeroes
         public GameViewModel()
         {
             actors.Add(YellowGuy);
-            new Timer(GameModel.UpdateGame, actors, 0, 100);
+            new Timer(GameModel.UpdateGame, actors, 0, 16);
         }
     }
 }
