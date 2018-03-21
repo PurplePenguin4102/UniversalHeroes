@@ -25,9 +25,13 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="175"/>
                     </Grid.RowDefinitions>
-                    <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Margin="0,0,0,297" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="260"/>
+                    </Grid.ColumnDefinitions>
+                    <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Margin="0,0,0,297" Grid.RowSpan="2" Grid.ColumnSpan="2">
                         <Rectangle Fill="#D2FAFA" Canvas.Left="100" Canvas.Top="100" Canvas.ZIndex="1" Width="20" Height="20"/>
                         <Rectangle Fill="#FAD2FA" Canvas.Left="160" Canvas.Top="160" Canvas.ZIndex="2" Width="20" Height="20"/>
                         <Rectangle Fill="#E6FAD2" Canvas.Left="220" Canvas.Top="220" Canvas.ZIndex="3" Width="20" Height="20"/>
@@ -45,11 +49,11 @@
                             </Rectangle.RenderTransform>
                         </Rectangle>
                     </Canvas>
-                    <Grid Grid.Row="1" Canvas.ZIndex="10">
-                        <Button Content="R" Width="50" Height="50" HorizontalAlignment="Right" Background="#CCFFFFFF" FontSize="36" Margin="0,0,100,25" VerticalAlignment="Bottom" />
-                        <Button Content="D" Width="50" Height="50" HorizontalAlignment="Right" Background="#CCFFFFFF" FontSize="36" Margin="0,0,175,25" VerticalAlignment="Bottom"/>
-                        <Button Content="U" Width="50" Height="50" HorizontalAlignment="Right" Background="#CCFFFFFF" FontSize="36" Margin="0,0,175,100" VerticalAlignment="Bottom"/>
-                        <Button Content="L" Width="50" Height="50" HorizontalAlignment="Right" Background="#CCFFFFFF" FontSize="36" Margin="0,0,250,25" VerticalAlignment="Bottom"/>
+                    <Grid Grid.Row="1" Grid.Column="1" Canvas.ZIndex="10" Background="#FF3C876F">
+                        <Button Content="→" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,30,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
+                        <Button Content="↓" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,105,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
+                        <Button Content="↑" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,105,100" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
+                        <Button Content="←" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,180,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
                     </Grid>
                 </Grid>
             </SplitView.Content>
