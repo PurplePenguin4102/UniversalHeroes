@@ -43,6 +43,18 @@ namespace UniversalHeroes
             this.InitializeComponent();
             this.ViewModel = new GameViewModel();
             Window.Current.CoreWindow.KeyDown += UserKeyDown;
+            Window.Current.CoreWindow.KeyUp += UserKeyUp;
+        }
+
+        private void UserKeyUp(CoreWindow sender, KeyEventArgs args)
+        {
+            switch (args.VirtualKey)
+            {
+                case VirtualKey.Right: ViewModel.YellowGuy.Command = GuyCommands.StopX; break;
+                case VirtualKey.Left: ViewModel.YellowGuy.Command = GuyCommands.StopX; break;
+                case VirtualKey.Up: ViewModel.YellowGuy.Command = GuyCommands.StopY; break;
+                case VirtualKey.Down: ViewModel.YellowGuy.Command = GuyCommands.StopY; break;
+            }
         }
 
         private void UserKeyDown(CoreWindow sender, KeyEventArgs args)
@@ -59,11 +71,6 @@ namespace UniversalHeroes
         private void ExpandoButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
-        }
-
-        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            ViewModel.YellowGuy.Command = GuyCommands.Stop;
         }
 
         private void yellowGuy_PointerPressed(object sender, PointerRoutedEventArgs e)

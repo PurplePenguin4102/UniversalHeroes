@@ -11,9 +11,10 @@ namespace UniversalHeroes
 {
     public class GameModel
     {
+        private CoreDispatcher dispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
         public async void UpdateGame(object state)
         {
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            await dispatcher.RunAsync(CoreDispatcherPriority.Normal,
             () =>
             {
                 var gameState = state as List<ActorBase>;

@@ -9,6 +9,8 @@ namespace UniversalHeroes
     public enum GuyCommands
     {
         Stop,
+        StopX,
+        StopY,
         GoLeft,
         GoRight,
         GoUp,

@@ -105,8 +105,17 @@ namespace UniversalHeroes
             get => _command;
             set 
             {
+
                 if (_command != value)
                 {
+                    if (xSpeed != 0 && new[] { GuyCommands.GoRight, GuyCommands.GoLeft }.Contains(value))
+                    {
+                        value = GuyCommands.Stop;
+                    }
+                    if (ySpeed != 0 && new[] { GuyCommands.GoUp, GuyCommands.GoDown }.Contains(value))
+                    {
+                        value = GuyCommands.Stop;
+                    }
                     _command = value;
                     ChangeSpeed();
                     NotifyPropertyChanged();
@@ -120,6 +129,8 @@ namespace UniversalHeroes
             switch (Command)
             {
                 case GuyCommands.Stop: xSpeed = ySpeed = 0; break;
+                case GuyCommands.StopX: xSpeed = 0; break;
+                case GuyCommands.StopY: ySpeed = 0; break;
                 case GuyCommands.GoLeft: xSpeed = -1; break;
                 case GuyCommands.GoRight: xSpeed = 1; break;
                 case GuyCommands.GoDown: ySpeed = 1; break;
