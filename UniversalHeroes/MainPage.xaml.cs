@@ -16,15 +16,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System;
-
-
-
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Upload;
-using Google.Apis.Util.Store;
-using Google.Apis.YouTube.v3;
-using Google.Apis.YouTube.v3.Data;
 using Windows.UI.Core;
 
 
@@ -50,10 +41,10 @@ namespace UniversalHeroes
         {
             switch (args.VirtualKey)
             {
-                case VirtualKey.Right: ViewModel.YellowGuy.Command = GuyCommands.StopX; break;
-                case VirtualKey.Left: ViewModel.YellowGuy.Command = GuyCommands.StopX; break;
-                case VirtualKey.Up: ViewModel.YellowGuy.Command = GuyCommands.StopY; break;
-                case VirtualKey.Down: ViewModel.YellowGuy.Command = GuyCommands.StopY; break;
+                case VirtualKey.Right: ViewModel.YellowGuy.Command = GuyCommands.StopRight; break;
+                case VirtualKey.Left: ViewModel.YellowGuy.Command = GuyCommands.StopLeft; break;
+                case VirtualKey.Up: ViewModel.YellowGuy.Command = GuyCommands.StopUp; break;
+                case VirtualKey.Down: ViewModel.YellowGuy.Command = GuyCommands.StopDown; break;
             }
         }
 

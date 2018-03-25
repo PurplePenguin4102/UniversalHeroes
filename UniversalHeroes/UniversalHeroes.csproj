@@ -18,6 +18,11 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>UniversalHeroes_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Never</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>6EDFAA1B758C9AF46EBEB2826534F7E390937646</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -96,6 +101,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColourBrushConverter.cs" />
+    <Compile Include="Colours.cs" />
     <Compile Include="GameModel.cs" />
     <Compile Include="GameViewModel.cs" />
     <Compile Include="GuyCommands.cs" />
@@ -104,7 +111,7 @@
     </Compile>
     <Compile Include="PeriodicTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YellowGuy.cs" />
+    <Compile Include="SelectableGuy.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -15,14 +15,19 @@ using Windows.UI.Core;
 
 namespace UniversalHeroes
 {
-    public class YellowGuy : ActorBase, INotifyPropertyChanged
+    public class SelectableGuy : ActorBase, INotifyPropertyChanged
     {
         private int xSpeed;
         private int ySpeed;
-        private int xPos;
-        private int yPos;
 
-        public YellowGuy() {}
+         
+        public Colours Colour { get; set; }
+
+        public SelectableGuy(int top, int left)
+        {
+            _top = top;
+            _left = left;
+        }
 
         public override void UpdateActor()
         {
@@ -105,22 +110,12 @@ namespace UniversalHeroes
             get => _command;
             set 
             {
-
                 if (_command != value)
                 {
-                    if (xSpeed != 0 && new[] { GuyCommands.GoRight, GuyCommands.GoLeft }.Contains(value))
-                    {
-                        value = GuyCommands.Stop;
-                    }
-                    if (ySpeed != 0 && new[] { GuyCommands.GoUp, GuyCommands.GoDown }.Contains(value))
-                    {
-                        value = GuyCommands.Stop;
-                    }
                     _command = value;
                     ChangeSpeed();
                     NotifyPropertyChanged();
                 }
-
             }
         }
 
@@ -128,13 +123,15 @@ namespace UniversalHeroes
         {
             switch (Command)
             {
-                case GuyCommands.Stop: xSpeed = ySpeed = 0; break;
-                case GuyCommands.StopX: xSpeed = 0; break;
-                case GuyCommands.StopY: ySpeed = 0; break;
-                case GuyCommands.GoLeft: xSpeed = -1; break;
-                case GuyCommands.GoRight: xSpeed = 1; break;
-                case GuyCommands.GoDown: ySpeed = 1; break;
-                case GuyCommands.GoUp: ySpeed = -1; break;
+                case GuyCommands.Stop:      xSpeed = ySpeed = 0                       ; break;
+                case GuyCommands.StopDown:  ySpeed = ySpeed != 0 ? ySpeed - 1 : 0     ; break;
+                case GuyCommands.StopUp:    ySpeed = ySpeed != 0 ? ySpeed + 1 : 0     ; break;
+                case GuyCommands.StopLeft:  xSpeed = xSpeed != 0 ? xSpeed + 1 : 0     ; break;
+                case GuyCommands.StopRight: xSpeed = xSpeed != 0 ? xSpeed - 1 : 0     ; break;
+                case GuyCommands.GoLeft:    xSpeed = xSpeed > -1 ? xSpeed - 1 : xSpeed; break;
+                case GuyCommands.GoRight:   xSpeed = xSpeed < 1  ? xSpeed + 1 : xSpeed; break;
+                case GuyCommands.GoDown:    ySpeed = ySpeed < 1  ? ySpeed + 1 : ySpeed; break;
+                case GuyCommands.GoUp:      ySpeed = ySpeed > -1 ? ySpeed - 1 : ySpeed; break;
             }
         }
 
