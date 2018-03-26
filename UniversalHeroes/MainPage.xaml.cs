@@ -74,5 +74,11 @@ namespace UniversalHeroes
             if (e.OriginalSource is Canvas)
                 ViewModel.YellowGuy.Selected = false;
         }
+
+        private void ThisPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            CanvasBorder.Width = ThisPage.ActualWidth;
+            CanvasBorder.Height = ThisPage.ActualHeight;
+        }
     }
 }

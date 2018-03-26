@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    
-    PointerPressed="Page_PointerPressed">
+    Name="ThisPage"
+    PointerPressed="Page_PointerPressed" SizeChanged="ThisPage_SizeChanged">
     <Page.Resources>
         <local:BorderBezierConverter x:Key="bezierPoint"/>
     </Page.Resources>
@@ -36,7 +36,10 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="260"/>
                         </Grid.ColumnDefinitions>
-                        <Border Name="CanvasBorder" Width="1450" Height="1000" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                        <Border Name="CanvasBorder" 
+                                Width="1450" 
+                                Height="1000" 
+                                Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
                             <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,0,0,297" >
                                 <Path>
                                     <Path.Fill>
@@ -55,11 +58,11 @@
                                                         <PathFigure IsClosed="true" StartPoint="0,850">
                                                             <PathFigure.Segments>
                                                                 <PathSegmentCollection>
-                                                                <BezierSegment Point1="600,600" 
-                                                                               Point2="900,900" 
-                                                                               Point3="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, Mode=OneWay}"/>
-                                                                <LineSegment Point="1450,1000"/>
-                                                                    <LineSegment Point="0,1000"/>
+                                                                <BezierSegment Point1="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}" 
+                                                                               Point2="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}" 
+                                                                               Point3="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}"/>
+                                                                <LineSegment Point="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}"/>
+                                                                <LineSegment Point="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}"/>
                                                                 </PathSegmentCollection>
                                                             </PathFigure.Segments>
                                                         </PathFigure>
