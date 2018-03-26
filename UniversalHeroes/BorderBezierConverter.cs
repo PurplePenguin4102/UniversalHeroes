@@ -13,10 +13,18 @@ namespace UniversalHeroes
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var border = value as Border;
-            if (border.ActualHeight == 0)
+            var border = value as ScreenDimensions;
+            if (border.Width == 0)
                 return new Point(0, 0);
-            return new Point(border.Width, 700);
+            switch (int.Parse((string)parameter))
+            {
+                case 1: return new Point(0, border.Height - 200);
+                case 2: return new Point(border.Width / 2, border.Height - 400);
+                case 3: return new Point(border.Width, border.Height - 300);
+                case 4: return new Point(border.Width, border.Height);
+                case 5: return new Point(0, border.Height);
+            }
+            return new Point(border.Width, border.Height);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

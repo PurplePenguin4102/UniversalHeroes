@@ -75,10 +75,17 @@ namespace UniversalHeroes
                 ViewModel.YellowGuy.Selected = false;
         }
 
+        private bool _skip = true;
         private void ThisPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            CanvasBorder.Width = ThisPage.ActualWidth;
-            CanvasBorder.Height = ThisPage.ActualHeight;
+            if (_skip)
+            {
+                _skip = false;
+                return;
+            }
+                
+            ViewModel.ScreenDimensions.Width = ThisPage.ActualWidth;
+            ViewModel.ScreenDimensions.Height = ThisPage.ActualHeight;
         }
     }
 }

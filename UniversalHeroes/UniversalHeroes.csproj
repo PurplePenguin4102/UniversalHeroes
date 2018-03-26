@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="PeriodicTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenDimensions.cs" />
     <Compile Include="SelectableGuy.cs" />
   </ItemGroup>
   <ItemGroup>
