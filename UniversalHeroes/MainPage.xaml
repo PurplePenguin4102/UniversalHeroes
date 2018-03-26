@@ -58,11 +58,11 @@
                                                         <PathFigure IsClosed="true" StartPoint="0,850">
                                                             <PathFigure.Segments>
                                                                 <PathSegmentCollection>
-                                                                <BezierSegment Point1="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}" 
-                                                                               Point2="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}" 
-                                                                               Point3="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}"/>
-                                                                <LineSegment Point="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}"/>
-                                                                <LineSegment Point="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter=CanvasBorder.Height, Mode=OneWay}"/>
+                                                                <BezierSegment Point1="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter={x:Bind Path=CanvasBorder.Height}, Mode=OneWay}" 
+                                                                               Point2="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter={x:Bind Path=CanvasBorder.Height}, Mode=OneWay}" 
+                                                                               Point3="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter={x:Bind Path=CanvasBorder.Height}, Mode=OneWay}"/>
+                                                                <LineSegment Point="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter={x:Bind Path=CanvasBorder.Height}, Mode=OneWay}"/>
+                                                                <LineSegment Point="{x:Bind Path=CanvasBorder.Width, Converter={StaticResource bezierPoint}, ConverterParameter={x:Bind Path=CanvasBorder.Height}, Mode=OneWay}"/>
                                                                 </PathSegmentCollection>
                                                             </PathFigure.Segments>
                                                         </PathFigure>
