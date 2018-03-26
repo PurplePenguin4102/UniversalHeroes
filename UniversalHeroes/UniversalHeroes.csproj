@@ -101,7 +101,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BorderBezierConverter.cs" />
     <Compile Include="ColourBrushConverter.cs" />
     <Compile Include="Colours.cs" />
     <Compile Include="GameModel.cs" />

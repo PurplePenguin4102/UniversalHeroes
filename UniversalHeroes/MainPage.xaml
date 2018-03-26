@@ -9,9 +9,6 @@
     Name="ThisPage"
     PointerPressed="Page_PointerPressed" SizeChanged="ThisPage_SizeChanged"
     >
-    <Page.Resources>
-        <local:BorderBezierConverter x:Key="bezierPoint"/>
-    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <SplitView x:Name="MySplitView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
@@ -60,13 +57,13 @@
                                                             <PathFigure.Segments>
                                                                 <PathSegmentCollection>
                                                                 <BezierSegment x:Name="BezierPath"
-                                                                               Point1="{x:Bind Path=ViewModel.ScreenDimensions, Converter={StaticResource bezierPoint}, ConverterParameter=1, Mode=TwoWay}" 
-                                                                               Point2="{x:Bind Path=ViewModel.ScreenDimensions, Converter={StaticResource bezierPoint}, ConverterParameter=2, Mode=TwoWay}" 
-                                                                               Point3="{x:Bind Path=ViewModel.ScreenDimensions, Converter={StaticResource bezierPoint}, ConverterParameter=3, Mode=TwoWay}"/>
+                                                                               Point1="{x:Bind Path=ViewModel.ScreenDimensions.Point1, Mode=TwoWay}" 
+                                                                               Point2="{x:Bind Path=ViewModel.ScreenDimensions.Point2, Mode=TwoWay}" 
+                                                                               Point3="{x:Bind Path=ViewModel.ScreenDimensions.Point3, Mode=TwoWay}"/>
                                                                 <LineSegment x:Name="LinePath1"
-                                                                    Point="{x:Bind Path=ViewModel.ScreenDimensions, Converter={StaticResource bezierPoint}, ConverterParameter=4, Mode=TwoWay}"/>
+                                                                    Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath1, Mode=TwoWay}"/>
                                                                 <LineSegment x:Name="LinePath2"
-                                                                    Point="{x:Bind Path=ViewModel.ScreenDimensions, Converter={StaticResource bezierPoint}, ConverterParameter=5, Mode=TwoWay}"/>
+                                                                    Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath2, Mode=TwoWay}"/>
                                                                 </PathSegmentCollection>
                                                             </PathFigure.Segments>
                                                         </PathFigure>

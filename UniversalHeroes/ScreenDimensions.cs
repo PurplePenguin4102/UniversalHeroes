@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
+using Windows.Foundation;
 using Windows.UI.Core;
 
 namespace UniversalHeroes
@@ -16,6 +17,7 @@ namespace UniversalHeroes
             _height = height;
             _width = width;
         }
+
         private double _height;
         public double Height
         {
@@ -25,12 +27,10 @@ namespace UniversalHeroes
                 if (_height != value)
                 {
                     _height = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ScreenDimensions"));
+                    RecalculatePoints();
                 }
             }
         }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private double _width;
         public double Width
@@ -41,10 +41,78 @@ namespace UniversalHeroes
                 if (_width != value)
                 {
                     _width = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ScreenDimensions"));
+                    RecalculatePoints();
                 }
             }
         }
+
+        private void RecalculatePoints()
+        {
+            Point1 = new Point(0, Height - 200);
+            Point2 = new Point(Width / 2, Height - 400);
+            Point3 = new Point(Width, Height - 300);
+            LinePath1 = new Point(Width, Height);
+            LinePath2 = new Point(0, Height);
+        }
+
+        private Point _point1;
+        public Point Point1
+        {
+            get => _point1;
+            set
+            {
+                _point1 = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Point1"));
+            }
+        }
+
+
+        private Point _point2;
+        public Point Point2
+        {
+            get => _point2;
+            set
+            {
+                _point2 = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Point2"));
+            }
+        }
+
+        private Point _point3;
+        public Point Point3
+        {
+            get => _point3;
+            set
+            {
+                _point3 = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Point3"));
+            }
+        }
+
+        private Point _linePath1;
+        public Point LinePath1
+        {
+            get => _linePath1;
+            set
+            {
+                _linePath1 = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("LinePath1"));
+            }
+        }
+
+        private Point _linePath2;
+        public Point LinePath2
+        {
+            get => _linePath2;
+            set
+            {
+                _linePath2 = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("LinePath2"));
+            }
+        }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public override bool Equals(object obj)
         {
             var sd = obj as ScreenDimensions;
