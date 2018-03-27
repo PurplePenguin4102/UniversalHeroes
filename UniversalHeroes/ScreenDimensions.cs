@@ -14,9 +14,17 @@ namespace UniversalHeroes
     {
         public ScreenDimensions(int width, int height)
         {
+            var r = new Random();
             _height = height;
             _width = width;
+            _point1Mod = 300 * r.NextDouble();
+            _point2Mod = 400 * r.NextDouble();
+            _point3Mod = 300 * r.NextDouble();
         }
+
+        private double _point1Mod;
+        private double _point2Mod;
+        private double _point3Mod;
 
         private double _height;
         public double Height
@@ -48,9 +56,9 @@ namespace UniversalHeroes
 
         private void RecalculatePoints()
         {
-            Point1 = new Point(0, Height - 200);
-            Point2 = new Point(Width / 2, Height - 400);
-            Point3 = new Point(Width, Height - 300);
+            Point1 = new Point(0, Height - _point1Mod);
+            Point2 = new Point(Width / 2, Height - _point2Mod);
+            Point3 = new Point(Width, Height - _point3Mod);
             LinePath1 = new Point(Width, Height);
             LinePath2 = new Point(0, Height);
         }

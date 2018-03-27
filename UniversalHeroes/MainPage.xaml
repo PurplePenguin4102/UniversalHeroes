@@ -9,137 +9,128 @@
     Name="ThisPage"
     PointerPressed="Page_PointerPressed" SizeChanged="ThisPage_SizeChanged"
     >
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        <SplitView x:Name="MySplitView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                   DisplayMode="CompactInline" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200">
-            <SplitView.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#7E9ED4"/>
-                    <GradientStop Color="#355C9E" Offset="1"/>
-                </LinearGradientBrush>
-            </SplitView.Background>
-            <SplitView.Pane>
-                <StackPanel Name="Hamburger">
-                    <Button x:Name="ExpandoButton" Width="50" Height="56" Background="Black" Click="ExpandoButton_Click"/>
-                </StackPanel>
-            </SplitView.Pane>
-            <SplitView.Content>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="175"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="260"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Name="CanvasBorder" 
-                                Width="1450" 
-                                Height="1000" 
-                                Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                            <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,0,0,297" >
-                                <Path>
-                                    <Path.Fill>
-                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                            <GradientStop Color="LightYellow" Offset="0.0" />
-                                            <GradientStop Color="IndianRed" Offset="0.405" />
-                                            <GradientStop Color="SaddleBrown" Offset="0.638" />
-                                            <GradientStop Color="Black" Offset="0.964" />
-                                        </LinearGradientBrush>
-                                    </Path.Fill>
-                                    <Path.Data>
-                                        <GeometryGroup>
-                                            <PathGeometry>
-                                                <PathGeometry.Figures>
-                                                    <PathFigureCollection>
-                                                        <PathFigure IsClosed="true" StartPoint="0,850">
-                                                            <PathFigure.Segments>
-                                                                <PathSegmentCollection>
-                                                                <BezierSegment x:Name="BezierPath"
-                                                                               Point1="{x:Bind Path=ViewModel.ScreenDimensions.Point1, Mode=TwoWay}" 
-                                                                               Point2="{x:Bind Path=ViewModel.ScreenDimensions.Point2, Mode=TwoWay}" 
-                                                                               Point3="{x:Bind Path=ViewModel.ScreenDimensions.Point3, Mode=TwoWay}"/>
-                                                                <LineSegment x:Name="LinePath1"
-                                                                    Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath1, Mode=TwoWay}"/>
-                                                                <LineSegment x:Name="LinePath2"
-                                                                    Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath2, Mode=TwoWay}"/>
-                                                                </PathSegmentCollection>
-                                                            </PathFigure.Segments>
-                                                        </PathFigure>
-                                                    </PathFigureCollection>
-                                                </PathGeometry.Figures>
-                                            </PathGeometry>
-                                        </GeometryGroup>
-                                    </Path.Data>
-                                </Path>
-                                <Rectangle x:Name="yellowGuy" 
-                                                Fill="{x:Bind Path=ViewModel.YellowGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
-                                                Width="{x:Bind Path=ViewModel.YellowGuy.Width}"
-                                                Height="{x:Bind Path=ViewModel.YellowGuy.Height}"
-                                                Canvas.Left="0"
-                                                Canvas.Top="0"
-                                                Canvas.ZIndex="2"
-                                                PointerPressed="yellowGuy_PointerPressed">
-                                    <Rectangle.RenderTransform>
-                                        <TranslateTransform 
-                                                    X="{x:Bind Path=ViewModel.YellowGuy.Left, Mode=TwoWay}" 
-                                                    Y="{x:Bind Path=ViewModel.YellowGuy.Top, Mode=TwoWay}"/>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                                <Rectangle x:Name="redGuy" 
-                                                Fill="{x:Bind Path=ViewModel.RedGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
-                                                Width="{x:Bind Path=ViewModel.RedGuy.Width}"
-                                                Height="{x:Bind Path=ViewModel.RedGuy.Height}"
-                                                Canvas.Left="0"
-                                                Canvas.Top="0"
-                                                Canvas.ZIndex="2"
-                                                PointerPressed="yellowGuy_PointerPressed">
-                                    <Rectangle.RenderTransform>
-                                        <TranslateTransform 
-                                                    X="{x:Bind Path=ViewModel.RedGuy.Left, Mode=TwoWay}" 
-                                                    Y="{x:Bind Path=ViewModel.RedGuy.Top, Mode=TwoWay}"/>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                                <Rectangle x:Name="blueGuy" 
-                                                Fill="{x:Bind Path=ViewModel.BlueGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
-                                                Width="{x:Bind Path=ViewModel.BlueGuy.Width}"
-                                                Height="{x:Bind Path=ViewModel.BlueGuy.Height}"
-                                                Canvas.Left="0"
-                                                Canvas.Top="0"
-                                                Canvas.ZIndex="2"
-                                                PointerPressed="yellowGuy_PointerPressed">
-                                    <Rectangle.RenderTransform>
-                                        <TranslateTransform 
-                                                    X="{x:Bind Path=ViewModel.BlueGuy.Left, Mode=TwoWay}" 
-                                                    Y="{x:Bind Path=ViewModel.BlueGuy.Top, Mode=TwoWay}"/>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                                <Rectangle x:Name="greenGuy" 
-                                                Fill="{x:Bind Path=ViewModel.GreenGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
-                                                Width="{x:Bind Path=ViewModel.GreenGuy.Width}"
-                                                Height="{x:Bind Path=ViewModel.GreenGuy.Height}"
-                                                Canvas.Left="0"
-                                                Canvas.Top="0"
-                                                Canvas.ZIndex="2"
-                                                PointerPressed="yellowGuy_PointerPressed">
-                                    <Rectangle.RenderTransform>
-                                        <TranslateTransform 
-                                                    X="{x:Bind Path=ViewModel.GreenGuy.Left, Mode=TwoWay}" 
-                                                    Y="{x:Bind Path=ViewModel.GreenGuy.Top, Mode=TwoWay}"/>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                            </Canvas>   
-                        </Border>
-                        <Grid Grid.Row="1" Grid.Column="1" Canvas.ZIndex="10" Background="#FF3C876F">
-                            <Button Content="→" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,30,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
-                            <Button Content="↓" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,105,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
-                            <Button Content="↑" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,105,100" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
-                            <Button Content="←" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,180,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
-                        </Grid>
-                    </Grid>
-
-            </SplitView.Content>
-        </SplitView>
-    </Grid>
+    <SplitView x:Name="MySplitView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                DisplayMode="CompactInline" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200">
+        <SplitView.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#7E9ED4"/>
+                <GradientStop Color="#355C9E" Offset="1"/>
+            </LinearGradientBrush>
+        </SplitView.Background>
+        <SplitView.Pane>
+            <StackPanel Name="Hamburger">
+                <Button x:Name="ExpandoButton" Width="50" Height="56" Background="Black" Click="ExpandoButton_Click"/>
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="175"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="260"/>
+                </Grid.ColumnDefinitions>
+                <Canvas x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Path>
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="LightYellow" Offset="0.0" />
+                                <GradientStop Color="IndianRed" Offset="0.405" />
+                                <GradientStop Color="SaddleBrown" Offset="0.638" />
+                                <GradientStop Color="Black" Offset="0.964" />
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                        <Path.Data>
+                            <GeometryGroup>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigureCollection>
+                                            <PathFigure IsClosed="true" StartPoint="0,850">
+                                                <PathFigure.Segments>
+                                                    <PathSegmentCollection>
+                                                        <BezierSegment
+                                                        Point1="{x:Bind Path=ViewModel.ScreenDimensions.Point1, Mode=TwoWay}" 
+                                                        Point2="{x:Bind Path=ViewModel.ScreenDimensions.Point2, Mode=TwoWay}" 
+                                                        Point3="{x:Bind Path=ViewModel.ScreenDimensions.Point3, Mode=TwoWay}"/>
+                                                        <LineSegment
+                                                        Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath1, Mode=TwoWay}"/>
+                                                        <LineSegment
+                                                        Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath2, Mode=TwoWay}"/>
+                                                    </PathSegmentCollection>
+                                                </PathFigure.Segments>
+                                            </PathFigure>
+                                        </PathFigureCollection>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </GeometryGroup>
+                        </Path.Data>
+                    </Path>
+                    <Rectangle x:Name="yellowGuy" 
+                                    Fill="{x:Bind Path=ViewModel.YellowGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
+                                    Width="{x:Bind Path=ViewModel.YellowGuy.Width}"
+                                    Height="{x:Bind Path=ViewModel.YellowGuy.Height}"
+                                    Canvas.Left="0"
+                                    Canvas.Top="0"
+                                    Canvas.ZIndex="2"
+                                    PointerPressed="yellowGuy_PointerPressed">
+                        <Rectangle.RenderTransform>
+                            <TranslateTransform 
+                                        X="{x:Bind Path=ViewModel.YellowGuy.Left, Mode=TwoWay}" 
+                                        Y="{x:Bind Path=ViewModel.YellowGuy.Top, Mode=TwoWay}"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle x:Name="redGuy" 
+                                    Fill="{x:Bind Path=ViewModel.RedGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
+                                    Width="{x:Bind Path=ViewModel.RedGuy.Width}"
+                                    Height="{x:Bind Path=ViewModel.RedGuy.Height}"
+                                    Canvas.Left="0"
+                                    Canvas.Top="0"
+                                    Canvas.ZIndex="2"
+                                    PointerPressed="yellowGuy_PointerPressed">
+                        <Rectangle.RenderTransform>
+                            <TranslateTransform 
+                                        X="{x:Bind Path=ViewModel.RedGuy.Left, Mode=TwoWay}" 
+                                        Y="{x:Bind Path=ViewModel.RedGuy.Top, Mode=TwoWay}"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle x:Name="blueGuy" 
+                                    Fill="{x:Bind Path=ViewModel.BlueGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
+                                    Width="{x:Bind Path=ViewModel.BlueGuy.Width}"
+                                    Height="{x:Bind Path=ViewModel.BlueGuy.Height}"
+                                    Canvas.Left="0"
+                                    Canvas.Top="0"
+                                    Canvas.ZIndex="2"
+                                    PointerPressed="yellowGuy_PointerPressed">
+                        <Rectangle.RenderTransform>
+                            <TranslateTransform 
+                                        X="{x:Bind Path=ViewModel.BlueGuy.Left, Mode=TwoWay}" 
+                                        Y="{x:Bind Path=ViewModel.BlueGuy.Top, Mode=TwoWay}"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle x:Name="greenGuy" 
+                                    Fill="{x:Bind Path=ViewModel.GreenGuy.Colour, Converter={StaticResource BrushConverter},Mode=OneWay}"
+                                    Width="{x:Bind Path=ViewModel.GreenGuy.Width}"
+                                    Height="{x:Bind Path=ViewModel.GreenGuy.Height}"
+                                    Canvas.Left="0"
+                                    Canvas.Top="0"
+                                    Canvas.ZIndex="2"
+                                    PointerPressed="yellowGuy_PointerPressed">
+                        <Rectangle.RenderTransform>
+                            <TranslateTransform 
+                                        X="{x:Bind Path=ViewModel.GreenGuy.Left, Mode=TwoWay}" 
+                                        Y="{x:Bind Path=ViewModel.GreenGuy.Top, Mode=TwoWay}"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                </Canvas>   
+                <Grid Grid.Row="1" Grid.Column="1" Canvas.ZIndex="10" Background="#FF3C876F">
+                    <Button Content="→" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,30,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
+                    <Button Content="↓" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,105,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
+                    <Button Content="↑" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,105,100" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
+                    <Button Content="←" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,180,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
+                </Grid>
+            </Grid>
+        </SplitView.Content>
+    </SplitView>
 </Page>
