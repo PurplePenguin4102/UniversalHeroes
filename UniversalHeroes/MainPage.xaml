@@ -51,13 +51,13 @@
                                                 <PathFigure.Segments>
                                                     <PathSegmentCollection>
                                                         <BezierSegment
-                                                        Point1="{x:Bind Path=ViewModel.ScreenDimensions.Point1, Mode=TwoWay}" 
-                                                        Point2="{x:Bind Path=ViewModel.ScreenDimensions.Point2, Mode=TwoWay}" 
-                                                        Point3="{x:Bind Path=ViewModel.ScreenDimensions.Point3, Mode=TwoWay}"/>
+                                                        Point1="{x:Bind Path=ViewModel.GroundGuy.Point1, Mode=TwoWay}" 
+                                                        Point2="{x:Bind Path=ViewModel.GroundGuy.Point2, Mode=TwoWay}" 
+                                                        Point3="{x:Bind Path=ViewModel.GroundGuy.Point3, Mode=TwoWay}"/>
                                                         <LineSegment
-                                                        Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath1, Mode=TwoWay}"/>
+                                                        Point="{x:Bind Path=ViewModel.GroundGuy.LinePath1, Mode=TwoWay}"/>
                                                         <LineSegment
-                                                        Point="{x:Bind Path=ViewModel.ScreenDimensions.LinePath2, Mode=TwoWay}"/>
+                                                        Point="{x:Bind Path=ViewModel.GroundGuy.LinePath2, Mode=TwoWay}"/>
                                                     </PathSegmentCollection>
                                                 </PathFigure.Segments>
                                             </PathFigure>

@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace UniversalHeroes
 {
-    public class ActorBase
+    public interface IGravityEnabled
     {
-        protected int XSpeed { get; set; }
-        protected int YSpeed { get; set; }
-
-        public virtual void UpdateActor() {}
+        double Gravity { get; }
+        void GravityEffectModifySpeed();
     }
 }

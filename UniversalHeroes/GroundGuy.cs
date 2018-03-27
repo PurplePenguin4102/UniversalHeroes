@@ -10,9 +10,9 @@ using Windows.UI.Core;
 
 namespace UniversalHeroes
 {
-    public class ScreenDimensions : INotifyPropertyChanged
+    public class GroundGuy : INotifyPropertyChanged
     {
-        public ScreenDimensions(int width, int height)
+        public GroundGuy(int width, int height)
         {
             var r = new Random();
             _height = height;
@@ -123,7 +123,7 @@ namespace UniversalHeroes
 
         public override bool Equals(object obj)
         {
-            var sd = obj as ScreenDimensions;
+            var sd = obj as GroundGuy;
             if (sd == null)
                 return base.Equals(obj);
             return sd.Height == Height && sd.Width == Width;

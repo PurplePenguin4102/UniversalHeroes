@@ -15,7 +15,7 @@ namespace UniversalHeroes
         public SelectableGuy GreenGuy { get; set; } = new SelectableGuy(120, 100) { Colour = Colours.Green };
         public SelectableGuy BlueGuy { get; set; } = new SelectableGuy(120, 120) { Colour = Colours.Blue };
 
-        public ScreenDimensions ScreenDimensions { get; set; } = new ScreenDimensions(height:1000, width:1450);
+        public GroundGuy GroundGuy { get; set; } = new GroundGuy(height:1000, width:1450);
         public GameModel GameModel { get; set; } = new GameModel();
 
         private Timer _uiUpdateTimer;

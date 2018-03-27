@@ -15,12 +15,8 @@ using Windows.UI.Core;
 
 namespace UniversalHeroes
 {
-    public class SelectableGuy : ActorBase, INotifyPropertyChanged
+    public class SelectableGuy : ActorBase, INotifyPropertyChanged, IGravityEnabled
     {
-        private int xSpeed;
-        private int ySpeed;
-
-         
         public Colours Colour { get; set; }
 
         public SelectableGuy(int top, int left)
@@ -31,14 +27,15 @@ namespace UniversalHeroes
 
         public override void UpdateActor()
         {
+            GravityEffectModifySpeed();
             UpdateSquarePosition();
             base.UpdateActor();
         }
 
         private void UpdateSquarePosition()
         {
-            Top += ySpeed;
-            Left += xSpeed;
+            Top += YSpeed;
+            Left += XSpeed;
         }
 
         private double _left;
@@ -119,24 +116,31 @@ namespace UniversalHeroes
             }
         }
 
+        public double Gravity { get; set; }
+
         private void ChangeSpeed()
         {
             switch (Command)
             {
-                case GuyCommands.Stop:      xSpeed = ySpeed = 0                       ; break;
-                case GuyCommands.StopDown:  ySpeed = ySpeed != 0 ? ySpeed - 1 : 0     ; break;
-                case GuyCommands.StopUp:    ySpeed = ySpeed != 0 ? ySpeed + 1 : 0     ; break;
-                case GuyCommands.StopLeft:  xSpeed = xSpeed != 0 ? xSpeed + 1 : 0     ; break;
-                case GuyCommands.StopRight: xSpeed = xSpeed != 0 ? xSpeed - 1 : 0     ; break;
-                case GuyCommands.GoLeft:    xSpeed = xSpeed > -1 ? xSpeed - 1 : xSpeed; break;
-                case GuyCommands.GoRight:   xSpeed = xSpeed < 1  ? xSpeed + 1 : xSpeed; break;
-                case GuyCommands.GoDown:    ySpeed = ySpeed < 1  ? ySpeed + 1 : ySpeed; break;
-                case GuyCommands.GoUp:      ySpeed = ySpeed > -1 ? ySpeed - 1 : ySpeed; break;
+                case GuyCommands.Stop:      XSpeed = YSpeed = 0                       ; break;
+                case GuyCommands.StopDown:  YSpeed = YSpeed != 0 ? YSpeed - 1 : 0     ; break;
+                case GuyCommands.StopUp:    YSpeed = YSpeed != 0 ? YSpeed + 1 : 0     ; break;
+                case GuyCommands.StopLeft:  XSpeed = XSpeed != 0 ? XSpeed + 1 : 0     ; break;
+                case GuyCommands.StopRight: XSpeed = XSpeed != 0 ? XSpeed - 1 : 0     ; break;
+                case GuyCommands.GoLeft:    XSpeed = XSpeed > -1 ? XSpeed - 1 : XSpeed; break;
+                case GuyCommands.GoRight:   XSpeed = XSpeed < 1  ? XSpeed + 1 : XSpeed; break;
+                case GuyCommands.GoDown:    YSpeed = YSpeed < 1  ? YSpeed + 1 : YSpeed; break;
+                case GuyCommands.GoUp:      YSpeed = YSpeed > -1 ? YSpeed - 1 : YSpeed; break;
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "") => 
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+
+        public void GravityEffectModifySpeed()
+        {
+            YSpeed++;
+        }
     }
 }

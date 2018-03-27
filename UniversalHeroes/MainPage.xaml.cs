@@ -77,8 +77,8 @@ namespace UniversalHeroes
 
         private void ThisPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ViewModel.ScreenDimensions.Width = ThisPage.ActualWidth;
-            ViewModel.ScreenDimensions.Height = ThisPage.ActualHeight;
+            ViewModel.GroundGuy.Width = ThisPage.ActualWidth;
+            ViewModel.GroundGuy.Height = ThisPage.ActualHeight;
         }
     }
 }
