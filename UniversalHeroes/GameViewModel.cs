@@ -9,11 +9,10 @@ namespace UniversalHeroes
 {
     public class GameViewModel
     {
-        private static int boxDim = 50;
-        public SelectableGuy YellowGuy { get; set; } = new SelectableGuy(100, 100) { Colour = Colours.Yellow, Name="YellowGuy" };
-        public SelectableGuy RedGuy { get; set; } = new SelectableGuy(100, 120) { Colour = Colours.Red, Name = "RedGuy" };
-        public SelectableGuy GreenGuy { get; set; } = new SelectableGuy(120, 100) { Colour = Colours.Green, Name = "GreenGuy" };
-        public SelectableGuy BlueGuy { get; set; } = new SelectableGuy(120, 120) { Colour = Colours.Blue, Name = "BlueGuy" };
+        public SelectableGuy YellowGuy { get; set; } = new SelectableGuy(100, 100) { Colour = Colours.Yellow, Name="yellowGuy" };
+        public SelectableGuy RedGuy { get; set; } = new SelectableGuy(100, 120) { Colour = Colours.Red, Name = "redGuy" };
+        public SelectableGuy GreenGuy { get; set; } = new SelectableGuy(120, 100) { Colour = Colours.Green, Name = "greenGuy" };
+        public SelectableGuy BlueGuy { get; set; } = new SelectableGuy(120, 120) { Colour = Colours.Blue, Name = "blueGuy" };
 
         public GroundGuy GroundGuy { get; set; } = new GroundGuy(height:1000, width:1450);
         public GameModel GameModel { get; set; } = new GameModel();
