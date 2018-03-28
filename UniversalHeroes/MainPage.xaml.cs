@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Shapes;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -64,9 +65,12 @@ namespace UniversalHeroes
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
-        private void yellowGuy_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void rectangle_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            ViewModel.YellowGuy.Selected = true;
+            var rect = sender as Rectangle;
+            var selectedGuy = ViewModel.Actors.First(a => a.Name == rect.Name);
+            var blime = selectedGuy as SelectableGuy; 
+            blime.Selected = true;
         }
 
         private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)

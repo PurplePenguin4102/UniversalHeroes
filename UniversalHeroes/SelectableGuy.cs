@@ -140,7 +140,7 @@ namespace UniversalHeroes
 
         public void GravityEffectModifySpeed()
         {
-            YSpeed++;
+            //YSpeed++;
         }
     }
 }

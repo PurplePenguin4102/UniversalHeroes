@@ -10,7 +10,7 @@ namespace UniversalHeroes
     {
         protected int XSpeed { get; set; }
         protected int YSpeed { get; set; }
-
+        public string Name { get; set; }
         public virtual void UpdateActor() {}
     }
 }

@@ -74,7 +74,7 @@
                                     Canvas.Left="0"
                                     Canvas.Top="0"
                                     Canvas.ZIndex="2"
-                                    PointerPressed="yellowGuy_PointerPressed">
+                                    PointerPressed="rectangle_PointerPressed">
                         <Rectangle.RenderTransform>
                             <TranslateTransform 
                                         X="{x:Bind Path=ViewModel.YellowGuy.Left, Mode=TwoWay}" 
@@ -88,7 +88,7 @@
                                     Canvas.Left="0"
                                     Canvas.Top="0"
                                     Canvas.ZIndex="2"
-                                    PointerPressed="yellowGuy_PointerPressed">
+                                    PointerPressed="rectangle_PointerPressed">
                         <Rectangle.RenderTransform>
                             <TranslateTransform 
                                         X="{x:Bind Path=ViewModel.RedGuy.Left, Mode=TwoWay}" 
@@ -102,7 +102,7 @@
                                     Canvas.Left="0"
                                     Canvas.Top="0"
                                     Canvas.ZIndex="2"
-                                    PointerPressed="yellowGuy_PointerPressed">
+                                    PointerPressed="rectangle_PointerPressed">
                         <Rectangle.RenderTransform>
                             <TranslateTransform 
                                         X="{x:Bind Path=ViewModel.BlueGuy.Left, Mode=TwoWay}" 
@@ -116,7 +116,7 @@
                                     Canvas.Left="0"
                                     Canvas.Top="0"
                                     Canvas.ZIndex="2"
-                                    PointerPressed="yellowGuy_PointerPressed">
+                                    PointerPressed="rectangle_PointerPressed">
                         <Rectangle.RenderTransform>
                             <TranslateTransform 
                                         X="{x:Bind Path=ViewModel.GreenGuy.Left, Mode=TwoWay}" 
