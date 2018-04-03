@@ -34,7 +34,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="260"/>
                 </Grid.ColumnDefinitions>
-                <canvas:CanvasControl x:Name="ViewField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <canvas:CanvasControl x:Name="ViewField" 
+                                      HorizontalAlignment="Stretch" 
+                                      VerticalAlignment="Stretch" 
+                                      CreateResources="ViewField_CreateResources" 
+                                      Draw="ViewField_OnDraw" 
+                                      ClearColor="CornFlowerBlue">
 
                 </canvas:CanvasControl>
                 <Grid Grid.Row="1" Grid.Column="1" Canvas.ZIndex="10" Background="#FF3C876F">
