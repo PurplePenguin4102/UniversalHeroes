@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Navigation;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Shapes;
+using Microsoft.Graphics.Canvas.UI;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -59,6 +61,16 @@ namespace UniversalHeroes
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void ViewField_CreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
+        {
+            throw new NotImplementedException();
         }
     }
 }
