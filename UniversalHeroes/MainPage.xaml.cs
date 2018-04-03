@@ -40,30 +40,11 @@ namespace UniversalHeroes
 
         private void UserKeyUp(CoreWindow sender, KeyEventArgs args)
         {
-            var selectedGuy = ViewModel.Actors.OfType<SelectableGuy>().FirstOrDefault(s => s.Selected);
-            if (selectedGuy == null)
-                return;
-            switch (args.VirtualKey)
-            {
-                case VirtualKey.Right: selectedGuy.Command = GuyCommands.StopRight; break;
-                case VirtualKey.Left:  selectedGuy.Command = GuyCommands.StopLeft; break;
-                case VirtualKey.Up:    selectedGuy.Command = GuyCommands.StopUp; break;
-                case VirtualKey.Down:  selectedGuy.Command = GuyCommands.StopDown; break;
-            }
         }
 
         private void UserKeyDown(CoreWindow sender, KeyEventArgs args)
         {
-            var selectedGuy = ViewModel.Actors.OfType<SelectableGuy>().FirstOrDefault(s => s.Selected);
-            if (selectedGuy == null)
-                return;
-            switch (args.VirtualKey)
-            {
-                case VirtualKey.Right: selectedGuy.Command = GuyCommands.GoRight; break;
-                case VirtualKey.Left:  selectedGuy.Command = GuyCommands.GoLeft; break;
-                case VirtualKey.Up:    selectedGuy.Command = GuyCommands.GoUp; break;
-                case VirtualKey.Down:  selectedGuy.Command = GuyCommands.GoDown; break;
-            }
+
         }
 
         private void ExpandoButton_Click(object sender, RoutedEventArgs e)
@@ -71,28 +52,13 @@ namespace UniversalHeroes
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
-        private void rectangle_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            var rect = sender as Rectangle;
-            ViewModel.Actors.OfType<SelectableGuy>().ToList().ForEach(s => s.Selected = false);
-            var selectedGuy = ViewModel.Actors.OfType<SelectableGuy>().First(a => a.Name == rect.Name);
-            selectedGuy.Selected = true;
-            e.Handled = true;
-        }
-
-        private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            if (e.Handled) return;
-            if (!(sender is Rectangle))
-            {
-                ViewModel.Actors.OfType<SelectableGuy>().ToList().ForEach(s => s.Selected = false);
-            }
-        }
-
         private void ThisPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ViewModel.GroundGuy.Width = ThisPage.ActualWidth;
-            ViewModel.GroundGuy.Height = ThisPage.ActualHeight;
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
