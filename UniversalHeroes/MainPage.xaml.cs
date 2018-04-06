@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Graphics.Canvas.UI;
@@ -65,12 +66,14 @@ namespace UniversalHeroes
 
         private void ViewField_CreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            args.DrawingSession.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
+            args.DrawingSession.DrawText("Hello, world!", 100, 100, Colors.Yellow);
         }
     }
 }
