@@ -12,22 +12,30 @@ using System.Threading;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
+using Windows.UI;
 
 namespace UniversalHeroes
 {
-    public class SelectableGuy : ActorBase, INotifyPropertyChanged, IGravityEnabled
+    public class SelectableGuy : ActorBase, IGravityEnabled
     {
-        public Colours Colour { get; set; }
+        public double Gravity { get; set; }
+        public float Left { get; set; }
+        public float Top { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public bool Selected { get; set; }
+        public Color Colour { get; set; }
 
-        public SelectableGuy(int top, int left)
+        public SelectableGuy(int top, int left, int width, int height)
         {
-            _top = top;
-            _left = left;
+            Top = top;
+            Left = left;
+            Width = width;
+            Height = height;
         }
 
         public override void UpdateActor()
         {
-            GravityEffectModifySpeed();
             UpdateSquarePosition();
             base.UpdateActor();
         }
@@ -37,70 +45,7 @@ namespace UniversalHeroes
             Top += YSpeed;
             Left += XSpeed;
         }
-
-        private double _left;
-        public double Left
-        {
-            get => _left;
-            set
-            {
-                if (_left != value)
-                {
-                    _left = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        private double _top;
-        public double Top
-        {
-            get => _top;
-            set
-            {
-                if (_top != value)
-                {
-                    _top = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        private int _width = 20;
-        public int Width
-        {
-            get => _width;
-            set
-            {
-                if (_width != value)
-                {
-                    _width = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        private int _height = 20;
-        public int Height
-        {
-            get => _height;
-            set
-            {
-                if (_height != value)
-                {
-                    _height = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        private bool _selected;
-        public bool Selected
-        {
-            get => _selected;
-            set => _selected = value;
-        }
-
+        
         private GuyCommands _command = GuyCommands.Stop;
         public GuyCommands Command
         {
@@ -111,12 +56,9 @@ namespace UniversalHeroes
                 {
                     _command = value;
                     ChangeSpeed();
-                    NotifyPropertyChanged();
                 }
             }
         }
-
-        public double Gravity { get; set; }
 
         private void ChangeSpeed()
         {
@@ -133,10 +75,6 @@ namespace UniversalHeroes
                 case GuyCommands.GoUp:      YSpeed = YSpeed > -1 ? YSpeed - 1 : YSpeed; break;
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "") => 
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 
         public void GravityEffectModifySpeed()
         {

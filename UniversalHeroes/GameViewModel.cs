@@ -11,13 +11,12 @@ namespace UniversalHeroes
     {
         public GameModel GameModel { get; set; } = new GameModel();
 
-        private Timer _uiUpdateTimer;
-        public List<ActorBase> Actors;
+        private Timer GameLoop;
+        private object state;
 
         public GameViewModel()
         {
-            Actors = new List<ActorBase>();
-            _uiUpdateTimer = new Timer(GameModel.UpdateGame, Actors, 0, 1);
+            GameLoop = new Timer(GameModel.UpdateGame, state, 0, 1);
         }
     }
 }

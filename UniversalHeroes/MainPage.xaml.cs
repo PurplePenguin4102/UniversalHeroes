@@ -39,6 +39,12 @@ namespace UniversalHeroes
             this.ViewModel = new GameViewModel();
             Window.Current.CoreWindow.KeyDown += UserKeyDown;
             Window.Current.CoreWindow.KeyUp += UserKeyUp;
+            Window.Current.CoreWindow.PointerPressed += MouseClick;
+        }
+
+        private void MouseClick(CoreWindow sender, PointerEventArgs args)
+        {
+            
         }
 
         private void UserKeyUp(CoreWindow sender, KeyEventArgs args)
@@ -72,20 +78,12 @@ namespace UniversalHeroes
         private void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
             //throw new NotImplementedException();
-            args.DrawingSession.DrawRectangle(100, 100, 100, 100, Color.FromArgb(255, 255, 30, 0));
-            args.DrawingSession.FillRectangle(100, 100, 100, 100, Color.FromArgb(255, 255, 30, 0));
-
-            args.DrawingSession.DrawRectangle(200, 200, 100, 100, Color.FromArgb(255, 255, 167, 0));
-            args.DrawingSession.FillRectangle(200, 200, 100, 100, Color.FromArgb(255, 255, 167, 0));
-
-            args.DrawingSession.DrawRectangle(300, 300, 100, 100, Color.FromArgb(255, 0, 82, 245));
-            args.DrawingSession.FillRectangle(300, 300, 100, 100, Color.FromArgb(255, 0, 82, 245));
-
-            args.DrawingSession.DrawRectangle(400, 400, 100, 100, Color.FromArgb(255, 0, 247, 65));
-            args.DrawingSession.FillRectangle(400, 400, 100, 100, Color.FromArgb(255, 0, 247, 65));
-
-            //args.DrawingSession.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
-            //args.DrawingSession.DrawText("Hello, world!", 100, 100, Colors.Yellow);
+            var rects = ViewModel.GameModel.Actors.OfType<SelectableGuy>();
+            foreach(var rect in rects)
+            {
+                args.DrawingSession.DrawRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
+                args.DrawingSession.FillRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
+            }
         }
     }
 }
