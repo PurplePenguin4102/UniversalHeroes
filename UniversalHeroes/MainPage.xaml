@@ -39,7 +39,9 @@
                                       VerticalAlignment="Stretch" 
                                       CreateResources="ViewField_CreateResources" 
                                       Draw="ViewField_OnDraw"
-                                      ClearColor="#20BBBB0F">
+                                      ClearColor="#00BBBB0F"
+                                      Grid.RowSpan="2"
+                                      Grid.ColumnSpan="2">
                 </canvas:CanvasControl>
                 <Grid Grid.Row="1" Grid.Column="1" Canvas.ZIndex="10" Background="#FF3C876F">
                     <Button Content="→" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,30,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>

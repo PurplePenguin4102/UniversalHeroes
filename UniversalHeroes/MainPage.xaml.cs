@@ -72,8 +72,20 @@ namespace UniversalHeroes
         private void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
             //throw new NotImplementedException();
-            args.DrawingSession.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
-            args.DrawingSession.DrawText("Hello, world!", 100, 100, Colors.Yellow);
+            args.DrawingSession.DrawRectangle(100, 100, 100, 100, Color.FromArgb(255, 255, 30, 0));
+            args.DrawingSession.FillRectangle(100, 100, 100, 100, Color.FromArgb(255, 255, 30, 0));
+
+            args.DrawingSession.DrawRectangle(200, 200, 100, 100, Color.FromArgb(255, 255, 167, 0));
+            args.DrawingSession.FillRectangle(200, 200, 100, 100, Color.FromArgb(255, 255, 167, 0));
+
+            args.DrawingSession.DrawRectangle(300, 300, 100, 100, Color.FromArgb(255, 0, 82, 245));
+            args.DrawingSession.FillRectangle(300, 300, 100, 100, Color.FromArgb(255, 0, 82, 245));
+
+            args.DrawingSession.DrawRectangle(400, 400, 100, 100, Color.FromArgb(255, 0, 247, 65));
+            args.DrawingSession.FillRectangle(400, 400, 100, 100, Color.FromArgb(255, 0, 247, 65));
+
+            //args.DrawingSession.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
+            //args.DrawingSession.DrawText("Hello, world!", 100, 100, Colors.Yellow);
         }
     }
 }
