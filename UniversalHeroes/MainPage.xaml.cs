@@ -44,16 +44,17 @@ namespace UniversalHeroes
 
         private void MouseClick(CoreWindow sender, PointerEventArgs args)
         {
-            ViewModel.GameModel.ClickEvents.Enqueue(args.CurrentPoint);
+            ViewModel.GameModel.ClickEvents.Enqueue(args.CurrentPoint.Position);
         }
 
         private void UserKeyUp(CoreWindow sender, KeyEventArgs args)
         {
+            ViewModel.GameModel.KeyState.Remove(args.VirtualKey);
         }
 
         private void UserKeyDown(CoreWindow sender, KeyEventArgs args)
         {
-
+            ViewModel.GameModel.KeyState.Add(args.VirtualKey);
         }
 
         private void ExpandoButton_Click(object sender, RoutedEventArgs e)

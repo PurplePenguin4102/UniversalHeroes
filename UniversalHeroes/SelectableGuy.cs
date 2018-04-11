@@ -13,6 +13,7 @@ using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI;
+using Windows.Foundation;
 
 namespace UniversalHeroes
 {
@@ -58,6 +59,14 @@ namespace UniversalHeroes
                     ChangeSpeed();
                 }
             }
+        }
+
+        public bool ContainsPoint(Point clickedAt)
+        {
+            return Left < clickedAt.X 
+                && clickedAt.X < Left + Width
+                && Top < clickedAt.Y 
+                && clickedAt.Y < Top + Height;
         }
 
         private void ChangeSpeed()
