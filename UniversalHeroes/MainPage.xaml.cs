@@ -44,7 +44,7 @@ namespace UniversalHeroes
 
         private void MouseClick(CoreWindow sender, PointerEventArgs args)
         {
-            
+            ViewModel.GameModel.ClickEvents.Enqueue(args.CurrentPoint);
         }
 
         private void UserKeyUp(CoreWindow sender, KeyEventArgs args)

@@ -5,13 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.ApplicationModel.Core;
+using Windows.System;
 using Windows.UI;
+using Windows.UI.Input;
 
 namespace UniversalHeroes
 {
     public class GameModel
     {
-        public List<ActorBase> Actors;
+        public List<ActorBase> Actors { get; set; }
+        public Queue<PointerPoint> ClickEvents { get; set; }
+        public List<VirtualKey> KeyState { get; set; }
 
         public GameModel()
         {
