@@ -16,7 +16,7 @@ namespace UniversalHeroes
 
         public GameViewModel()
         {
-            GameLoop = new Timer(GameModel.UpdateGame, state, 0, 1);
+            GameLoop = new Timer(GameModel.UpdateGame, state, 10, 10);
         }
     }
 }

@@ -41,6 +41,17 @@ namespace UniversalHeroes
             Window.Current.CoreWindow.KeyUp += UserKeyUp;
             Window.Current.CoreWindow.PointerPressed += MouseClick;
             Window.Current.CoreWindow.PointerMoved += MouseMoved;
+            ViewModel.GameModel.Actors[0].ForcesApplied.Add(new Force(0, 1));
+            DrawLoop();
+        }
+
+        private async void DrawLoop()
+        {
+            while (true)
+            {
+                await Task.Delay(15);
+                ViewField.Invalidate();
+            }
         }
 
         private void MouseMoved(CoreWindow sender, PointerEventArgs args)

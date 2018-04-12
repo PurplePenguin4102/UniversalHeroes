@@ -103,10 +103,10 @@
     </Compile>
     <Compile Include="ColourBrushConverter.cs" />
     <Compile Include="Colours.cs" />
+    <Compile Include="Force.cs" />
     <Compile Include="GameModel.cs" />
     <Compile Include="GameViewModel.cs" />
     <Compile Include="GuyCommands.cs" />
-    <Compile Include="IGravityEnabled.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

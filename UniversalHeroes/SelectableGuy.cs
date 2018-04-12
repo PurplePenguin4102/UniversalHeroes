@@ -17,7 +17,7 @@ using Windows.Foundation;
 
 namespace UniversalHeroes
 {
-    public class SelectableGuy : ActorBase, IGravityEnabled
+    public class SelectableGuy : ActorBase
     {
         public double Gravity { get; set; }
         public float Left { get; set; }
@@ -37,6 +37,7 @@ namespace UniversalHeroes
 
         public override void UpdateActor()
         {
+            ApplyForces();
             UpdateSquarePosition();
             base.UpdateActor();
         }
@@ -83,11 +84,6 @@ namespace UniversalHeroes
                 case GuyCommands.GoDown:    YSpeed = YSpeed < 1  ? YSpeed + 1 : YSpeed; break;
                 case GuyCommands.GoUp:      YSpeed = YSpeed > -1 ? YSpeed - 1 : YSpeed; break;
             }
-        }
-
-        public void GravityEffectModifySpeed()
-        {
-            //YSpeed++;
         }
     }
 }
