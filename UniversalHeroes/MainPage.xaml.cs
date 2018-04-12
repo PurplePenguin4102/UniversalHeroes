@@ -40,11 +40,22 @@ namespace UniversalHeroes
             Window.Current.CoreWindow.KeyDown += UserKeyDown;
             Window.Current.CoreWindow.KeyUp += UserKeyUp;
             Window.Current.CoreWindow.PointerPressed += MouseClick;
+            Window.Current.CoreWindow.PointerMoved += MouseMoved;
+        }
+
+        private void MouseMoved(CoreWindow sender, PointerEventArgs args)
+        {
+            var point = new Point(Math.Round(args.CurrentPoint.Position.X), Math.Round(args.CurrentPoint.Position.Y));
+            var offset = MySplitView.IsPaneOpen ? 200 : 50;
+
+            MouseLocation.Text = $"{point.X},{point.Y} :: {point.X - offset},{point.Y}";
         }
 
         private void MouseClick(CoreWindow sender, PointerEventArgs args)
         {
-            ViewModel.GameModel.ClickEvents.Enqueue(args.CurrentPoint.Position);
+            var point = args.CurrentPoint.Position;
+            var offset = MySplitView.IsPaneOpen ? 200: 50;
+            ViewModel.GameModel.ClickEvents.Enqueue(new Point(point.X - offset, point.Y));
         }
 
         private void UserKeyUp(CoreWindow sender, KeyEventArgs args)

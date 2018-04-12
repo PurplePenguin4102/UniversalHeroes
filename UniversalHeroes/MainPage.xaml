@@ -49,6 +49,7 @@
                     <Button Content="↑" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,105,100" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
                     <Button Content="←" Width="50" Height="50" HorizontalAlignment="Right" Background="#AAFFFFFF" FontSize="40" Margin="0,0,180,25" VerticalAlignment="Bottom" FontFamily="Blackadder ITC"/>
                 </Grid>
+                <TextBox x:Name="MouseLocation" HorizontalAlignment="Right" Width="250" Height="50" Text="" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" FontSize="24" Background="Black" Foreground="White" TextAlignment="Right" />
             </Grid>
         </SplitView.Content>
     </SplitView>
