@@ -9,8 +9,8 @@ namespace UniversalHeroes
 {
     public class ActorBase
     {
-        protected int XSpeed { get; set; }
-        protected int YSpeed { get; set; }
+        protected float XSpeed { get; set; }
+        protected float YSpeed { get; set; }
         public string Name { get; set; }
         public virtual void UpdateActor() {}
         public List<Force> ForcesApplied { get; set; } = new List<Force>();
@@ -22,8 +22,8 @@ namespace UniversalHeroes
                 var dir = ForcesApplied
                     .Select(v => v.Direction)
                     .Aggregate((v1, v2) => Vector2.Add(v1, v2));
-                XSpeed += (int)dir.X;
-                YSpeed += (int)dir.Y;
+                XSpeed += dir.X;
+                YSpeed += dir.Y;
             }
         }
     }

@@ -27,7 +27,7 @@ namespace UniversalHeroes
                 new SelectableGuy(150, 100, 50, 50) {Colour = Color.FromArgb(0xff, 0x4e, 0x00, 0xf9)},
                 new SelectableGuy(150, 150, 50, 50) {Colour = Color.FromArgb(0xff, 0x00, 0xfa, 0x42)}
             };
-
+            Actors[0].ForcesApplied.Add(new Force(0.05f, 0.1f));
         }
 
         public void UpdateGame(object state)

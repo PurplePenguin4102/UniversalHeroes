@@ -41,17 +41,6 @@ namespace UniversalHeroes
             Window.Current.CoreWindow.KeyUp += UserKeyUp;
             Window.Current.CoreWindow.PointerPressed += MouseClick;
             Window.Current.CoreWindow.PointerMoved += MouseMoved;
-            ViewModel.GameModel.Actors[0].ForcesApplied.Add(new Force(0, 1));
-            DrawLoop();
-        }
-
-        private async void DrawLoop()
-        {
-            while (true)
-            {
-                await Task.Delay(15);
-                ViewField.Invalidate();
-            }
         }
 
         private void MouseMoved(CoreWindow sender, PointerEventArgs args)
@@ -98,7 +87,7 @@ namespace UniversalHeroes
             //throw new NotImplementedException();
         }
 
-        private void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
+        private async void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
             //throw new NotImplementedException();
             var rects = ViewModel.GameModel.Actors.OfType<SelectableGuy>();
@@ -107,6 +96,8 @@ namespace UniversalHeroes
                 args.DrawingSession.DrawRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
                 args.DrawingSession.FillRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
             }
+            await Task.Delay(1);
+            ViewField.Invalidate();
         }
     }
 }
