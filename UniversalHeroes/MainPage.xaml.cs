@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.WebUI;
 using Windows.UI.Xaml.Shapes;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
@@ -92,16 +93,18 @@ namespace UniversalHeroes
         {
             //throw new NotImplementedException();
             var rects = ViewModel.GameModel.Actors.OfType<SelectableGuy>();
-            foreach(var rect in rects)
-            {
-                args.DrawingSession.DrawRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
-                args.DrawingSession.FillRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
-            }
-
             var backgroundElements = ViewModel.GameModel.Actors.OfType<BackgroundGuy>();
-            foreach (var widget in backgroundElements)
+            using (var sesh = args.DrawingSession)
             {
-                args.DrawingSession.DrawGeometry(widget.Geometry, new Vector2(), widget.Colour));
+                foreach (var rect in rects)
+                {
+                    sesh.DrawRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
+                    sesh.FillRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
+                }
+                foreach (var widget in backgroundElements)
+                {
+                    //sesh.DrawGeometry(widget.Geometry, new Vector2(), widget.Colour);
+                }
             }
 
             await Task.Delay(1);

@@ -15,9 +15,9 @@ namespace UniversalHeroes
 {
     public class BackgroundGuy : ActorBase
     {
-        public BackgroundGuy(int width, int height)
+        public BackgroundGuy()
         {
-
+            
         }
 
         public Color Colour { get; set; } = Color.FromArgb(0xff, 0x0, 0x0, 0x0);

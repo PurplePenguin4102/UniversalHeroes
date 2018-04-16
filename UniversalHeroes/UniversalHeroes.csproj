@@ -111,7 +111,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GroundGuy.cs" />
+    <Compile Include="BackgroundGuy.cs" />
     <Compile Include="SelectableGuy.cs" />
   </ItemGroup>
   <ItemGroup>
