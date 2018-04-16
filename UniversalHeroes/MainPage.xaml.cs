@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
@@ -96,6 +97,13 @@ namespace UniversalHeroes
                 args.DrawingSession.DrawRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
                 args.DrawingSession.FillRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
             }
+
+            var backgroundElements = ViewModel.GameModel.Actors.OfType<BackgroundGuy>();
+            foreach (var widget in backgroundElements)
+            {
+                args.DrawingSession.DrawGeometry(widget.Geometry, new Vector2(), widget.Colour));
+            }
+
             await Task.Delay(1);
             ViewField.Invalidate();
         }

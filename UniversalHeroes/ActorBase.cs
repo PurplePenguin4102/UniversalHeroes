@@ -9,8 +9,8 @@ namespace UniversalHeroes
 {
     public class ActorBase
     {
-        protected float XSpeed { get; set; }
-        protected float YSpeed { get; set; }
+        public float XSpeed { get; set; }
+        public float YSpeed { get; set; }
         public string Name { get; set; }
         public virtual void UpdateActor() {}
         public List<Force> ForcesApplied { get; set; } = new List<Force>();
