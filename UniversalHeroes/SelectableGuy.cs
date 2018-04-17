@@ -29,12 +29,22 @@ namespace UniversalHeroes
         public int Height { get; set; }
         public bool Selected { get; set; }
         public Color Colour { get; set; }
+        private CanvasControl _canvas;
 
         public override void RenderGeometry(CanvasControl canvas)
         {
-            Geometry = CanvasGeometry.CreateRectangle(canvas, Left, Top, Width, Height);
+            _canvas = canvas;
+            Geometry = CanvasGeometry.CreateRectangle(_canvas, Left, Top, Width, Height);
             Brush = new CanvasSolidColorBrush(canvas, Colour);
             base.RenderGeometry(canvas);
+        }
+
+        public void UpdateGeometry()
+        {
+            if (Geometry != null)
+            {
+                Geometry = CanvasGeometry.CreateRectangle(_canvas, Left, Top, Width, Height);
+            }
         }
 
         public SelectableGuy(int top, int left, int width, int height)
@@ -49,6 +59,7 @@ namespace UniversalHeroes
         {
             ApplyForces();
             UpdateSquarePosition();
+            UpdateGeometry();
             base.UpdateActor();
         }
 
