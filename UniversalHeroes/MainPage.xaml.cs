@@ -86,24 +86,19 @@ namespace UniversalHeroes
 
         private void ViewField_CreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args)
         {
-            //throw new NotImplementedException();
+            foreach (var actor in ViewModel.GameModel.Actors)
+            {
+                actor.RenderGeometry(sender);       
+            }
         }
 
         private async void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
-            //throw new NotImplementedException();
-            var rects = ViewModel.GameModel.Actors.OfType<SelectableGuy>();
-            var backgroundElements = ViewModel.GameModel.Actors.OfType<BackgroundGuy>();
             using (var sesh = args.DrawingSession)
             {
-                foreach (var rect in rects)
+                foreach (var actor in ViewModel.GameModel.Actors)
                 {
-                    sesh.DrawRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
-                    sesh.FillRectangle(rect.Left, rect.Top, rect.Width, rect.Height, rect.Colour);
-                }
-                foreach (var widget in backgroundElements)
-                {
-                    //sesh.DrawGeometry(widget.Geometry, new Vector2(), widget.Colour);
+                    sesh.FillGeometry(actor.Geometry, new Vector2(0f, 0f), actor.Brush);
                 }
             }
 

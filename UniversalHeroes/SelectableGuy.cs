@@ -14,6 +14,9 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI;
 using Windows.Foundation;
+using Microsoft.Graphics.Canvas.Brushes;
+using Microsoft.Graphics.Canvas.Geometry;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 
 namespace UniversalHeroes
 {
@@ -26,6 +29,13 @@ namespace UniversalHeroes
         public int Height { get; set; }
         public bool Selected { get; set; }
         public Color Colour { get; set; }
+
+        public override void RenderGeometry(CanvasControl canvas)
+        {
+            Geometry = CanvasGeometry.CreateRectangle(canvas, Left, Top, Width, Height);
+            Brush = new CanvasSolidColorBrush(canvas, Colour);
+            base.RenderGeometry(canvas);
+        }
 
         public SelectableGuy(int top, int left, int width, int height)
         {

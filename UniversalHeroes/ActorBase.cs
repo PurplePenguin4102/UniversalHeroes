@@ -4,6 +4,9 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Graphics.Canvas.Brushes;
+using Microsoft.Graphics.Canvas.Geometry;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 
 namespace UniversalHeroes
 {
@@ -14,6 +17,13 @@ namespace UniversalHeroes
         public string Name { get; set; }
         public virtual void UpdateActor() {}
         public List<Force> ForcesApplied { get; set; } = new List<Force>();
+        public ICanvasBrush Brush { get; set; }
+        public CanvasGeometry Geometry { get; set; }
+
+        public virtual void RenderGeometry(CanvasControl canvas)
+        {
+
+        }
 
         public void ApplyForces()
         {
