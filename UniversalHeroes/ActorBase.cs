@@ -46,6 +46,9 @@ namespace UniversalHeroes
             _actorCollisions.Add(collider);
         }
 
-
+        public virtual void ResolveCollisions()
+        {
+            _actorCollisions.Clear();
+        }
     }
 }

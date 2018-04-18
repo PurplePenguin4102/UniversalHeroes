@@ -62,6 +62,11 @@ namespace UniversalHeroes
                     }
                 }
             }
+
+            foreach (var actor in Actors)
+            {
+                actor.ResolveCollisions();
+            }
         }
     }
 }
