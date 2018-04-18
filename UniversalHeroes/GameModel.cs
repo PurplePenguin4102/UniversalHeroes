@@ -1,4 +1,5 @@
-﻿using Microsoft.Graphics.Canvas.Geometry;
+﻿using System;
+using Microsoft.Graphics.Canvas.Geometry;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
@@ -25,7 +26,11 @@ namespace UniversalHeroes
                 new BackgroundGuy()
             };
 
-            Actors[0].ForcesApplied.Add(new Force(0f, 0.9f));
+            foreach (var actor in Actors)
+            {
+                actor.ForcesApplied.Add(new Force(0f, 0.9f));
+            }
+
             Actors[0].XSpeed = 15f;
             Actors[0].YSpeed = -30f;
         }
@@ -47,6 +52,17 @@ namespace UniversalHeroes
                 actor.UpdateActor(Gamefield);
             }
 
+            TestCollisions((act1, act2) => act1.Geometry.CompareWith(act2.Geometry) == CanvasGeometryRelation.Overlap);
+
+            foreach (var actor in Actors)
+            {
+                actor.ResolveCollisions();
+            }
+        }
+
+
+        private void TestCollisions(Func<ActorBase, ActorBase, bool> collisionTest)
+        {
             for (int i = 0; i < Actors.Count(); i++)
             {
                 if (Actors[i].Collided) continue;
@@ -55,17 +71,12 @@ namespace UniversalHeroes
                 {
                     if (j <= i) continue;
 
-                    if (Actors[i].Geometry.CompareWith(Actors[j].Geometry) == CanvasGeometryRelation.Overlap)
+                    if (collisionTest(Actors[i], Actors[j]))
                     {
                         Actors[i].RegisterCollision(Actors[j]);
                         Actors[j].RegisterCollision(Actors[i]);
                     }
                 }
-            }
-
-            foreach (var actor in Actors)
-            {
-                actor.ResolveCollisions();
             }
         }
     }

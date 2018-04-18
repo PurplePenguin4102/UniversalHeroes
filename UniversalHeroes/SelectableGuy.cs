@@ -92,5 +92,13 @@ namespace UniversalHeroes
                 case GuyCommands.GoUp:      YSpeed = YSpeed > -1 ? YSpeed - 1 : YSpeed; break;
             }
         }
+
+        public override void ResolveCollisions()
+        {
+            YSpeed = -YSpeed;
+            XSpeed = -XSpeed;
+
+            base.ResolveCollisions();
+        }
     }
 }
