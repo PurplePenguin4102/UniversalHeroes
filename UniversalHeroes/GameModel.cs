@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Graphics.Canvas.Geometry;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
 using Windows.System;
@@ -18,15 +19,15 @@ namespace UniversalHeroes
             Actors = new List<ActorBase>
             {
                 new SelectableGuy(600, 100, 50, 50) {Colour = Color.FromArgb(0xff, 0xff, 0x13, 0x00), Name="Redguy"},
-                new SelectableGuy(600, 150, 50, 50) {Colour = Color.FromArgb(0xff, 0xff, 0xdb, 0x00)},
+                new SelectableGuy(650, 200, 50, 50) {Colour = Color.FromArgb(0xff, 0xff, 0xdb, 0x00)},
                 new SelectableGuy(650, 100, 50, 50) {Colour = Color.FromArgb(0xff, 0x4e, 0x00, 0xf9)},
                 new SelectableGuy(650, 150, 50, 50) {Colour = Color.FromArgb(0xff, 0x00, 0xfa, 0x42)},
                 new BackgroundGuy()
             };
 
-            Actors[0].ForcesApplied.Add(new Force(0f, 0.3f));
-            Actors[0].XSpeed = 5f;
-            Actors[0].YSpeed = -15f;
+            Actors[0].ForcesApplied.Add(new Force(0f, 0.9f));
+            Actors[0].XSpeed = 15f;
+            Actors[0].YSpeed = -30f;
         }
 
         public void UpdateGame(object state)
@@ -44,6 +45,22 @@ namespace UniversalHeroes
             foreach (var actor in Actors)
             {
                 actor.UpdateActor(Gamefield);
+            }
+
+            for (int i = 0; i < Actors.Count(); i++)
+            {
+                if (Actors[i].Collided) continue;
+
+                for (int j = 0; j < Actors.Count(); j++)
+                {
+                    if (j <= i) continue;
+
+                    if (Actors[i].Geometry.CompareWith(Actors[j].Geometry) == CanvasGeometryRelation.Overlap)
+                    {
+                        Actors[i].RegisterCollision(Actors[j]);
+                        Actors[j].RegisterCollision(Actors[i]);
+                    }
+                }
             }
         }
     }

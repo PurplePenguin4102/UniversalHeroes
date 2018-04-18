@@ -98,7 +98,7 @@ namespace UniversalHeroes
             ViewModel.StartGame();
         }
 
-        private async void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
+        private void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
         {
             using (var sesh = args.DrawingSession)
             {
@@ -108,7 +108,6 @@ namespace UniversalHeroes
                 }
             }
 
-            await Task.Delay(1);
             ViewField.Invalidate();
         }
     }

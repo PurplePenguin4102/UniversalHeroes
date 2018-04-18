@@ -20,6 +20,8 @@ namespace UniversalHeroes
         public List<Force> ForcesApplied { get; set; } = new List<Force>();
         public ICanvasBrush Brush { get; set; }
         public CanvasGeometry Geometry { get; set; }
+        public bool Collided { get; set; }
+        private List<ActorBase> _actorCollisions = new List<ActorBase>();
 
         public virtual void RenderGeometry(CanvasControl canvas)
         {
@@ -37,5 +39,13 @@ namespace UniversalHeroes
                 YSpeed += dir.Y;
             }
         }
+
+        public void RegisterCollision(ActorBase collider)
+        {
+            Collided = true;
+            _actorCollisions.Add(collider);
+        }
+
+
     }
 }
