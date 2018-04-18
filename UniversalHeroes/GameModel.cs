@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
@@ -17,8 +18,9 @@ namespace UniversalHeroes
         public List<ActorBase> Actors { get; set; }
         public Queue<Point> ClickEvents { get; set; } = new Queue<Point>();
         public List<VirtualKey> KeyState { get; set; } = new List<VirtualKey>();
+        public Rect Gamefield { get; set; } = new Rect(0f, 0f, 0f, 0f);
 
-        public GameModel()
+        public void GameInit()
         {
             Actors = new List<ActorBase>
             {
@@ -48,7 +50,7 @@ namespace UniversalHeroes
 
             foreach (var actor in Actors)
             {
-                actor.UpdateActor();
+                actor.UpdateActor(Gamefield);
             }
         }
     }

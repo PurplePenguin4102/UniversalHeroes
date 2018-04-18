@@ -9,7 +9,6 @@
     Unloaded="Page_Unloaded"
     mc:Ignorable="d"
     Name="ThisPage"
-    SizeChanged="ThisPage_SizeChanged"
     >
     <SplitView x:Name="MySplitView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                 DisplayMode="CompactInline" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="200">

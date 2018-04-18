@@ -55,12 +55,12 @@ namespace UniversalHeroes
             Height = height;
         }
 
-        public override void UpdateActor()
+        public override void UpdateActor(Rect gameField)
         {
             ApplyForces();
             UpdateSquarePosition();
             UpdateGeometry();
-            base.UpdateActor();
+            base.UpdateActor(gameField);
         }
 
         private void UpdateSquarePosition()

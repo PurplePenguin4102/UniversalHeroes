@@ -43,13 +43,18 @@ namespace UniversalHeroes
             Window.Current.CoreWindow.KeyUp += UserKeyUp;
             Window.Current.CoreWindow.PointerPressed += MouseClick;
             Window.Current.CoreWindow.PointerMoved += MouseMoved;
+            Window.Current.CoreWindow.ResizeCompleted += WindowResized;
+        }
+
+        private void WindowResized(CoreWindow sender, object args)
+        {
+            SetGameField();
         }
 
         private void MouseMoved(CoreWindow sender, PointerEventArgs args)
         {
             var point = new Point(Math.Round(args.CurrentPoint.Position.X), Math.Round(args.CurrentPoint.Position.Y));
             var offset = MySplitView.IsPaneOpen ? 200 : 50;
-
             MouseLocation.Text = $"{point.X},{point.Y} :: {point.X - offset},{point.Y}";
         }
 
@@ -73,10 +78,13 @@ namespace UniversalHeroes
         private void ExpandoButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+            SetGameField();
         }
 
-        private void ThisPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void SetGameField()
         {
+            var offset = MySplitView.IsPaneOpen ? 200 : 50;
+            ViewModel.GameModel.Gamefield = new Rect(0, 0, Window.Current.CoreWindow.Bounds.Width - offset, Window.Current.CoreWindow.Bounds.Width - offset);
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -86,10 +94,14 @@ namespace UniversalHeroes
 
         private void ViewField_CreateResources(CanvasControl sender, CanvasCreateResourcesEventArgs args)
         {
+            ViewModel.GameModel.GameInit();
+            SetGameField();
             foreach (var actor in ViewModel.GameModel.Actors)
             {
                 actor.RenderGeometry(sender);       
             }
+            
+            ViewModel.StartGame();
         }
 
         private async void ViewField_OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
