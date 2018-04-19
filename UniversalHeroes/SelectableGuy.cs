@@ -3,6 +3,7 @@ using Windows.Foundation;
 using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using System.Linq;
 
 namespace UniversalHeroes
 {
@@ -93,11 +94,31 @@ namespace UniversalHeroes
             }
         }
 
+
+
         public override void ResolveCollisions()
         {
-            YSpeed = -YSpeed;
-            XSpeed = -XSpeed;
-
+            if (Collided)
+            {
+                YSpeed = -(YSpeed * 0.7f);
+                XSpeed = (XSpeed * 0.7f);
+                foreach (var actor in _actorCollisions)
+                {
+                    var bound = actor.Geometry.ComputeBounds();
+                    if (bound.Top < Top || bound.Top > Top)
+                    {
+                        CancelYForce = true;
+                    }
+                    if (bound.Left > Left || bound.Left < Left)
+                    {
+                        CancelXForce = true;
+                    }
+                }
+            }
+            else
+            {
+                CancelXForce = CancelYForce = false;
+            }
             base.ResolveCollisions();
         }
     }

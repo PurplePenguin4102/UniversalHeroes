@@ -21,7 +21,10 @@ namespace UniversalHeroes
         public ICanvasBrush Brush { get; set; }
         public CanvasGeometry Geometry { get; set; }
         public bool Collided { get; set; }
-        private List<ActorBase> _actorCollisions = new List<ActorBase>();
+        protected List<ActorBase> _actorCollisions = new List<ActorBase>();
+
+        protected bool CancelXForce;
+        protected bool CancelYForce;
 
         public virtual void RenderGeometry(CanvasControl canvas)
         {
@@ -35,8 +38,14 @@ namespace UniversalHeroes
                 var dir = ForcesApplied
                     .Select(v => v.Direction)
                     .Aggregate((v1, v2) => Vector2.Add(v1, v2));
-                XSpeed += dir.X;
-                YSpeed += dir.Y;
+                if (!CancelXForce)
+                {
+                    XSpeed += dir.X;
+                }
+                if (!CancelYForce)
+                {
+                    YSpeed += dir.Y;
+                }
             }
         }
 
@@ -49,6 +58,7 @@ namespace UniversalHeroes
         public virtual void ResolveCollisions()
         {
             _actorCollisions.Clear();
+            Collided = false;
         }
     }
 }

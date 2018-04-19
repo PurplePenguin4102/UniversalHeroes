@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Microsoft.Graphics.Canvas.Geometry;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace UniversalHeroes
         public Queue<Point> ClickEvents { get; set; } = new Queue<Point>();
         public List<VirtualKey> KeyState { get; set; } = new List<VirtualKey>();
         public Rect Gamefield { get; set; }
+        private bool updateRunning = false;
 
         public void GameInit()
         {
@@ -30,13 +32,15 @@ namespace UniversalHeroes
             {
                 actor.ForcesApplied.Add(new Force(0f, 0.9f));
             }
-
-            Actors[0].XSpeed = 15f;
-            Actors[0].YSpeed = -30f;
+            Actors[0].XSpeed = 10f;
+            Actors[0].YSpeed = -20f;
         }
 
         public void UpdateGame(object state)
         {
+            if (updateRunning) return;
+
+            updateRunning = true;
             Point clickedAt;
             if (ClickEvents.Any())
             {
@@ -58,6 +62,7 @@ namespace UniversalHeroes
             {
                 actor.ResolveCollisions();
             }
+            updateRunning = false;
         }
 
 
