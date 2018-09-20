@@ -17,7 +17,7 @@ namespace UniversalHeroes
         public float YSpeed { get; set; }
         public string Name { get; set; }
         public virtual void UpdateActor(Rect gameField) {}
-        public List<Force> ForcesApplied { get; set; } = new List<Force>();
+        public List<Force> ForcesApplied { get; set; } = new List<Force>() { new Force(0f, 0f)};
         public ICanvasBrush Brush { get; set; }
         public CanvasGeometry Geometry { get; set; }
         public bool Collided { get; set; }
@@ -35,17 +35,24 @@ namespace UniversalHeroes
         {
             if (ForcesApplied.Any())
             {
-                var dir = ForcesApplied
-                    .Select(v => v.Direction)
-                    .Aggregate((v1, v2) => Vector2.Add(v1, v2));
-                if (!CancelXForce)
+                Vector2 dir;
+                if (CancelYForce)
                 {
-                    XSpeed += dir.X;
+                    dir = ForcesApplied
+                        .Where(f => !f.IsGlobal)
+                        .Select(v => v.Direction)
+                        .Aggregate((v1, v2) => Vector2.Add(v1, v2));
                 }
-                if (!CancelYForce)
+                else
                 {
-                    YSpeed += dir.Y;
+                    dir = ForcesApplied
+                        .Select(v => v.Direction)
+                        .Aggregate((v1, v2) => Vector2.Add(v1, v2));
                 }
+                
+                
+                XSpeed += dir.X;
+                YSpeed += dir.Y;
             }
         }
 

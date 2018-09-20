@@ -4,6 +4,8 @@ using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System.Linq;
+using System.Collections.Generic;
+using System.Numerics;
 
 namespace UniversalHeroes
 {
@@ -14,6 +16,7 @@ namespace UniversalHeroes
         public float Top { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public Vector2 CenterOfGuy { get => new Vector2((float)(Left + Width / 2), (float)(Top + Height / 2)); }
         public bool Selected { get; set; }
         public Color Colour { get; set; }
         private CanvasControl _canvas;
@@ -45,14 +48,17 @@ namespace UniversalHeroes
         public override void UpdateActor(Rect gameField)
         {
             ApplyForces();
-            UpdateSquarePosition();
-            UpdateGeometry();
+            UpdateSquarePosition(gameField);
             base.UpdateActor(gameField);
         }
 
-        private void UpdateSquarePosition()
+        private void UpdateSquarePosition(Rect gameField)
         {
             Top += YSpeed;
+            if (Left + XSpeed < 0 || Left + Width + XSpeed > gameField.Right)
+            {
+                XSpeed *= -1;
+            }
             Left += XSpeed;
         }
         
@@ -100,17 +106,24 @@ namespace UniversalHeroes
         {
             if (Collided)
             {
-                YSpeed = -(YSpeed * 0.7f);
-                XSpeed = (XSpeed * 0.7f);
                 foreach (var actor in _actorCollisions)
                 {
                     var bound = actor.Geometry.ComputeBounds();
                     if (bound.Top < Top || bound.Top > Top)
                     {
+                        YSpeed *= -1;
+                        YSpeed = YSpeed * 0.6f;
+                        XSpeed = XSpeed * 0.6f;
                         CancelYForce = true;
+                        Top = (float)bound.Top - Height;
+                        if (System.Math.Abs(YSpeed) > 2)
+                        {
+                            Top -= 0.1f;
+                        }
                     }
                     if (bound.Left > Left || bound.Left < Left)
                     {
+                        //XSpeed *= -1;
                         CancelXForce = true;
                     }
                 }
@@ -119,6 +132,7 @@ namespace UniversalHeroes
             {
                 CancelXForce = CancelYForce = false;
             }
+            UpdateGeometry();
             base.ResolveCollisions();
         }
     }

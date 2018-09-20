@@ -22,15 +22,15 @@ namespace UniversalHeroes
             Actors = new List<ActorBase>
             {
                 new SelectableGuy(600, 100, 50, 50) {Colour = Color.FromArgb(0xff, 0xff, 0x13, 0x00), Name="Redguy"},
-                new SelectableGuy(650, 200, 50, 50) {Colour = Color.FromArgb(0xff, 0xff, 0xdb, 0x00)},
-                new SelectableGuy(650, 100, 50, 50) {Colour = Color.FromArgb(0xff, 0x4e, 0x00, 0xf9)},
-                new SelectableGuy(650, 150, 50, 50) {Colour = Color.FromArgb(0xff, 0x00, 0xfa, 0x42)},
+                //new SelectableGuy(650, 200, 50, 50) {Colour = Color.FromArgb(0xff, 0xff, 0xdb, 0x00)},
+                //new SelectableGuy(650, 100, 50, 50) {Colour = Color.FromArgb(0xff, 0x4e, 0x00, 0xf9)},
+                //new SelectableGuy(650, 150, 50, 50) {Colour = Color.FromArgb(0xff, 0x00, 0xfa, 0x42)},
                 new BackgroundGuy()
             };
 
             foreach (var actor in Actors)
             {
-                actor.ForcesApplied.Add(new Force(0f, 0.9f));
+                actor.ForcesApplied.Add(new Force(0f, 0.9f) { IsGlobal = true });
             }
             Actors[0].XSpeed = 10f;
             Actors[0].YSpeed = -20f;
@@ -48,7 +48,18 @@ namespace UniversalHeroes
                 var selectableGuys = Actors.OfType<SelectableGuy>();
                 selectableGuys.Select(sg => sg.Selected = false); 
                 var selectedGuy = selectableGuys.FirstOrDefault(sg => sg.ContainsPoint(clickedAt));
-                if (selectedGuy != null) selectedGuy.Selected = true;
+                
+                if (selectedGuy != null)
+                {
+                    var guy = selectedGuy as SelectableGuy;
+                    guy.Selected = true;
+                    var power = 1.5f;
+                    
+                    var center = guy.CenterOfGuy;
+                    var Direc = new System.Numerics.Vector2((float)(center.X - clickedAt.X), (float)(center.Y - clickedAt.Y));
+                    guy.XSpeed = Direc.X * power;
+                    guy.YSpeed = Direc.Y * power;
+                }
             }
 
             foreach (var actor in Actors)
@@ -57,10 +68,10 @@ namespace UniversalHeroes
             }
 
             TestCollisions((act1, act2) => act1.Geometry.CompareWith(act2.Geometry) == CanvasGeometryRelation.Overlap);
-
+            
             foreach (var actor in Actors)
             {
-                actor.ResolveCollisions();
+                actor.ResolveCollisions();                
             }
             updateRunning = false;
         }

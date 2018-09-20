@@ -92,7 +92,7 @@ namespace UniversalHeroes
             SetGameField();
             foreach (var actor in ViewModel.GameModel.Actors)
             {
-                actor.RenderGeometry(sender);       
+                actor.RenderGeometry(sender);
             }
             
             ViewModel.StartGame();
